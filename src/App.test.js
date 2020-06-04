@@ -1,9 +1,10 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { shallow } from 'enzyme';
+import InputContainer from './component/input-container/Inputcontainer.component'
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+it("renders InpunContainer", ()=>{
+    const wrapper = shallow(<App/>);
+    expect(wrapper.find(InputContainer).length).toEqual(1);
 });
