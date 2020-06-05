@@ -1,19 +1,10 @@
-import todoReducer from "./todo/todo.reducer";
-import { TodoActionType } from "./todo/todo.types";
+import { TodoActionType } from "./todo.types";
 
 import configureStore from "redux-mock-store";
-import { addItem } from "./todo/todo.action";
+import { addItem } from "./todo.action";
 
-describe("reducers", () => {
-  const initialInput = {
-    todoItems: [],
-  };
-
+describe("Todo actions", () => {
   const mockStore = configureStore([]);
-
-  it("should return the initial state", () => {
-    expect(todoReducer(undefined, {})).toEqual({ todoItems: [] });
-  });
 
   it("should dispatch action", () => {
     const initialState = {};
@@ -25,6 +16,7 @@ describe("reducers", () => {
         pomoCount: 4,
       })
     );
+
     const actions = store.getActions();
     const expectedPayload = {
       type: TodoActionType.ADD_ITEM,
@@ -36,4 +28,6 @@ describe("reducers", () => {
     };
     expect(actions).toEqual([expectedPayload]);
   });
+
+
 });
