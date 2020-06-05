@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TodoContainer/ > renders InpunContainer 1`] = `ShallowWrapper {}`;
