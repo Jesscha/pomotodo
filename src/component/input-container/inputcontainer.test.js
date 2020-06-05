@@ -3,8 +3,43 @@ import { shallow } from 'enzyme';
 import InputContainer from './Inputcontainer.component';
 
 
-it("renders InpunContainer", ()=>{
+
+
+
+
+
+describe("<InputContainer/ >", ()=>{
     const wrapper = shallow(<InputContainer/>)
-    expect(wrapper).toMatchSnapshot();
-});
-  
+    beforeEach(()=>{
+        wrapper.setState ({
+            id: 1,
+            todoInput: "abc",
+            pomoCount: 4
+        });
+    });
+
+
+    it("renders InpunContainer", ()=>{
+        expect(wrapper).toMatchSnapshot();
+    });
+
+    it("each input shows each state", ()=>{
+       
+        const todoInput = wrapper.find('#todo-input');
+        const pomoCount = wrapper.find('#pomo-count');
+        expect(todoInput.prop('value')).toEqual("abc");
+        expect(pomoCount.prop('value')).toEqual(4);
+    })
+    it("initialize state when button clicked", ()=>{
+        wrapper.find('button').simulate("click")
+        expect(wrapper.state().todoInput).toEqual("")
+        expect(wrapper.state().pomoCount).toEqual(1)
+    })
+
+    
+    })
+
+
+
+
+
