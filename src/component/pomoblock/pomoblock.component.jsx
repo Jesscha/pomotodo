@@ -5,7 +5,7 @@ import  './pomoblock.styles.scss';
 const Pomoblock = () =>{
 
     return(
-        <div class="pomoblock">
+        <div className="pomoblock">
             
 
         </div>

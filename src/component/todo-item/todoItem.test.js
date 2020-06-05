@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import TodoItem from './todoItem.component';
+import {TodoItem} from './todoItem.component';
 import Pomoblock from '../pomoblock/pomoblock.component';
 
 
@@ -9,7 +9,7 @@ describe("<TodoItem />", ()=>{
         name: "test1",
         pomoCount: 5
     }
-    const wrapper = shallow(<TodoItem {...mockProps} />)
+    const wrapper = shallow(<TodoItem item={mockProps} />)
     it("renders TodoItem", ()=>{
         expect(wrapper).toMatchSnapshot();
     });

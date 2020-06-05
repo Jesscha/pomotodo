@@ -1,10 +1,10 @@
 import React from 'react';
 import Pomoblock from '../pomoblock/pomoblock.component';
+import { moveToDone } from '../../redux/todo/todo.action';
+import { connect } from 'react-redux';
 
-const TodoItem = ({name, pomoCount}) => {
-    console.log(name)
-    
-
+export const TodoItem = ({item, moveItem}) => {
+    const {name, pomoCount} = item
     return(
         <li className="todo-item">
             <span className="name">
@@ -15,10 +15,17 @@ const TodoItem = ({name, pomoCount}) => {
                     <Pomoblock key={index} />
                 ))}
             </span>
-            
-            
+            <button onClick={()=>{moveItem(item)}}>Move To Done</button>
         </li>
     )
 }
 
-export default TodoItem;
+const mapDispatchToProps = dispatch =>({
+    moveItem: item => dispatch(moveToDone(item))
+});
+
+
+
+export default connect(null, mapDispatchToProps)(TodoItem);
+
+

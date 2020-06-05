@@ -1,7 +1,7 @@
 import { TodoActionType } from "./todo.types";
 
 import configureStore from "redux-mock-store";
-import { addItem } from "./todo.action";
+import { addItem, moveToDone } from "./todo.action";
 
 describe("Todo actions", () => {
   const mockStore = configureStore([]);
@@ -28,6 +28,18 @@ describe("Todo actions", () => {
     };
     expect(actions).toEqual([expectedPayload]);
   });
+
+  it("should create a moveToDone Action", ()=>{
+    const mockItem = {
+      id: 1
+    }
+    const action = moveToDone(mockItem);
+    expect(action.type).toEqual(TodoActionType.MOVE_TO_DONE)
+    expect(action.payload).toEqual(mockItem)
+  });
+
+  
+
 
 
 });
