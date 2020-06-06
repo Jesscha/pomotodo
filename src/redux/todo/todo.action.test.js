@@ -1,7 +1,7 @@
 import { TodoActionType } from "./todo.types";
 
 import configureStore from "redux-mock-store";
-import { addItem, moveToDone, moveBackToList, deleteItemFromDone, deleteItemFromToDo } from "./todo.action";
+import { addItem, moveToDone, moveBackToList, deleteItemFromDone, deleteItemFromToDo, fireTimer } from "./todo.action";
 
 describe("Todo actions", () => {
   const mockStore = configureStore([]);
@@ -63,6 +63,18 @@ describe("Todo actions", () => {
 
     
   });
+
+  it("should create a Delete Action", ()=>{
+    const mockItem = {
+      id: 1
+    }
+    const fireAction = fireTimer(mockItem)
+    expect(fireAction.type).toEqual(TodoActionType.FIRE_TIMER)
+    expect(fireAction.payload).toEqual(mockItem)
+
+    
+  });
+
 
 
   

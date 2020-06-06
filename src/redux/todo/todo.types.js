@@ -4,6 +4,7 @@ export const TodoActionType = {
     MOVE_BACK: "MOVE_BACK",
     DELETE_FROM_TODO:"DELETE_FROM_TODO",
     DELETE_FROM_DONE:"DELETE_FROM_DONE",
+    FIRE_TIMER:"FIRE_TIMER",
 }
 
 

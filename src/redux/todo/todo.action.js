@@ -26,3 +26,10 @@ export const deleteItemFromDone = (item)=>({
     type: TodoActionType.DELETE_FROM_DONE,
     payload: item
 })
+
+
+export const fireTimer = (item) =>({
+    type: TodoActionType.FIRE_TIMER,
+    payload: item
+})
+
