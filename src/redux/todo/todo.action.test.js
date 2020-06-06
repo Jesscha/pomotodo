@@ -1,7 +1,7 @@
 import { TodoActionType } from "./todo.types";
 
 import configureStore from "redux-mock-store";
-import { addItem, moveToDone } from "./todo.action";
+import { addItem, moveToDone, moveBackToList, deleteItemFromDone, deleteItemFromToDo } from "./todo.action";
 
 describe("Todo actions", () => {
   const mockStore = configureStore([]);
@@ -37,6 +37,33 @@ describe("Todo actions", () => {
     expect(action.type).toEqual(TodoActionType.MOVE_TO_DONE)
     expect(action.payload).toEqual(mockItem)
   });
+
+
+  it("should create a moveBackToList Action", ()=>{
+    const mockItem = {
+      id: 1
+    }
+    const action = moveBackToList(mockItem);
+    expect(action.type).toEqual(TodoActionType.MOVE_BACK)
+    expect(action.payload).toEqual(mockItem)
+  });
+
+
+  it("should create a Delete Action", ()=>{
+    const mockItem = {
+      id: 1
+    }
+    const todoDeleteAction = deleteItemFromToDo(mockItem);
+    expect(todoDeleteAction.type).toEqual(TodoActionType.DELETE_FROM_TODO)
+    expect(todoDeleteAction.payload).toEqual(mockItem)
+
+    const doneDeleteAction = deleteItemFromDone(mockItem);
+    expect(doneDeleteAction.type).toEqual(TodoActionType.DELETE_FROM_DONE)
+    expect(doneDeleteAction.payload).toEqual(mockItem)
+
+    
+  });
+
 
   
 

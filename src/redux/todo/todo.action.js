@@ -10,3 +10,19 @@ export const moveToDone =(item)=>({
     type: TodoActionType.MOVE_TO_DONE,
     payload: item
 })
+
+export const moveBackToList  =(item)=>({
+    type: TodoActionType.MOVE_BACK,
+    payload: item
+})
+
+export const deleteItemFromToDo = (item)=>({
+    type: TodoActionType.DELETE_FROM_TODO,
+    payload: item
+})
+
+
+export const deleteItemFromDone = (item)=>({
+    type: TodoActionType.DELETE_FROM_DONE,
+    payload: item
+})

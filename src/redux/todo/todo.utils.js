@@ -1,7 +1,8 @@
 
 
-export const moveTodoItem = (todoItems, ItemToMove)=>{
-    const arr =  todoItems.filter(item => item.id !== ItemToMove.id);
+export const removeFromList = (todoItems, itemToMove)=>{
+    console.log(todoItems)
+    const arr =  todoItems.filter(item => item.id !== itemToMove.id);
     return arr
 }
 

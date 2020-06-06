@@ -53,4 +53,79 @@ describe("Todo reducers", () => {
       reducerOutput.todoItems.length
     ).toEqual(0);
   })
+
+  it("should move Item from DoneList to TodoList", ()=>{
+    const mockPrevState = {
+      todoItems: [],
+      doneItems: [{
+        id: 1,
+        name:"item to be moved",
+        pomoCount: 4
+      }]
+    };
+    const reducerOutput =todoReducer(mockPrevState, {
+      type: TodoActionType.MOVE_BACK,
+      payload:{
+        id: 1,
+        name:"item to be moved",
+        pomoCount: 4
+      }
+    })
+    expect(
+      reducerOutput.doneItems.length
+    ).toEqual(0);
+    expect(
+      reducerOutput.todoItems.length
+    ).toEqual(1);
+  })
+
+
+
+  it("should remove Item", ()=>{
+    const mockPrevState = {
+      todoItems: [{
+        id: 2,
+        name:"item to be removed",
+        pomoCount: 2
+      }],
+      doneItems: [{
+        id: 1,
+        name:"item to be removed",
+        pomoCount: 4
+      }]
+    };
+    const reducerOutput =todoReducer(mockPrevState, {
+      type: TodoActionType.DELETE_FROM_TODO,
+      payload:{
+        id: 2,
+        pomoCount: 4
+      }
+    })
+    expect(
+      reducerOutput.doneItems.length
+    ).toEqual(1);
+    expect(
+      reducerOutput.todoItems.length
+    ).toEqual(0);
+
+    const reducerOutput2 =todoReducer(mockPrevState, {
+      type: TodoActionType.DELETE_FROM_DONE,
+      payload:{
+        id: 1,
+        name:"item to be moved",
+        pomoCount: 2
+      }
+    })
+    expect(
+      reducerOutput2.doneItems.length
+    ).toEqual(0);
+    expect(
+      reducerOutput2.todoItems.length
+    ).toEqual(1);
+
+
+
+
+
+  })
 });

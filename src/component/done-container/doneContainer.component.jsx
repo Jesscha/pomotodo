@@ -7,7 +7,7 @@ export const DoneContainer = ({doneItems})=>{
         <div className="done-container">
             <ul className="done-items">
             {doneItems.map(item =>
-                    <TodoItem key={item.id} item = {item} />
+                    <TodoItem key={item.id} item = {item} isLive={0}/>
                 )}
             </ul>
         </div>
