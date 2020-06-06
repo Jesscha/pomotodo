@@ -33,8 +33,8 @@ export class InputContainer extends React.Component{
             const item = {
                 id,
                 name: this.state.name,
-                pomoCount: this.state.pomoCount,
-                livePomoBlocks: this.state.pomoCount,
+                pomoCount: parseInt(this.state.pomoCount),
+                livePomoBlocks: parseInt(this.state.pomoCount),
                 finishedPomoBlocks: 0
             }
             callback(item)

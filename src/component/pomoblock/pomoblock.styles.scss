@@ -1,6 +1,12 @@
 .pomoblock{
     width: 10px;
     height: 20px;
+    background-color: red;
     display: inline-block;
+    border: solid black 3px;
+
+    &.finished{
+        background-color: black;
+    }
     
 }
