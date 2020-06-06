@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 
 export const TodoItem = ({item, moveItem, moveBack, isLive, deleteItemFromToDo, deleteItemFromDone}) => {
     const {name, pomoCount} = item
-    console.log({pomoCount})
     return(
         <li className="todo-item">
             <span className="name">

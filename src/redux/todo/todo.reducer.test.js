@@ -122,10 +122,37 @@ describe("Todo reducers", () => {
     expect(
       reducerOutput2.todoItems.length
     ).toEqual(1);
+  });
 
-
-
-
-
+  it("decrease live pomoBlock count and increase finished pomoBlock timer", ()=>{
+    const mockPrevState = {
+      todoItems: [{
+        id: 1,
+        name:"timer fired item",
+        pomoCount: 4,
+        livePomoBlocks: 4,
+        finishedPomoBlocks: 0
+      },{
+        id: 664,
+        name:"item to stay the same",
+        pomoCount: 6,
+        livePomoBlocks: 3,
+        finishedPomoBlocks: 3
+      }
+    ],
+      doneItems: []
+    };
+    const reducerOutput =todoReducer(mockPrevState, {
+      type: TodoActionType.FIRE_TIMER,
+      payload:{
+        id: 1,
+        name:"timer fired item",
+        pomoCount: 4,
+        livePomoBlocks: 4,
+        finishedPomoBlocks: 0
+      }
+    })
+    expect(reducerOutput.todoItems.find(item => item.id ===1).livePomoBlocks).toEqual(3);
+    expect(reducerOutput.todoItems.find(item => item.id ===1).finishedPomoBlocks).toEqual(1);
   })
 });
