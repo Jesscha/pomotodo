@@ -149,10 +149,80 @@ describe("Todo reducers", () => {
         name:"timer fired item",
         pomoCount: 4,
         livePomoBlocks: 4,
-        finishedPomoBlocks: 0
+        
       }
     })
     expect(reducerOutput.todoItems.find(item => item.id ===1).livePomoBlocks).toEqual(3);
     expect(reducerOutput.todoItems.find(item => item.id ===1).finishedPomoBlocks).toEqual(1);
   })
+
+
+  it("increase live pomoCount and livePomoBlocks", ()=>{
+    const mockPrevState = {
+      todoItems: [{
+        id: 1,
+        name:"timer fired item",
+        pomoCount: 4,
+        livePomoBlocks: 4,
+        finishedPomoBlocks: 0
+      },{
+        id: 664,
+        name:"item to stay the same",
+        pomoCount: 6,
+        livePomoBlocks: 3,
+        finishedPomoBlocks: 3
+      }
+    ],
+      doneItems: []
+    };
+    const reducerOutput =todoReducer(mockPrevState, {
+      type: TodoActionType.POMO_INCREASE,
+      payload:{
+        id: 1,
+        name:"timer fired item",
+        pomoCount: 4,
+        livePomoBlocks: 4,
+        
+      }
+    })
+    expect(reducerOutput.todoItems.find(item => item.id ===1).livePomoBlocks).toEqual(5);
+    expect(reducerOutput.todoItems.find(item => item.id ===1).pomoCount).toEqual(5);
+
+
+
+  })
+
+
+  it("decrease live pomoCount and livePomoBlocks", ()=>{
+    const mockPrevState = {
+      todoItems: [{
+        id: 1,
+        name:"timer fired item",
+        pomoCount: 4,
+        livePomoBlocks: 4,
+        finishedPomoBlocks: 0
+      },{
+        id: 664,
+        name:"item to stay the same",
+        pomoCount: 6,
+        livePomoBlocks: 3,
+        finishedPomoBlocks: 3
+      }
+    ],
+      doneItems: []
+    };
+    const reducerOutput =todoReducer(mockPrevState, {
+      type: TodoActionType.POMO_DECREASE,
+      payload:{
+        id: 1,
+        name:"timer fired item",
+        pomoCount: 4,
+        livePomoBlocks: 4,
+        
+      }
+    })
+    expect(reducerOutput.todoItems.find(item => item.id ===1).livePomoBlocks).toEqual(3);
+    expect(reducerOutput.todoItems.find(item => item.id ===1).pomoCount).toEqual(3);
+  })
+
 });

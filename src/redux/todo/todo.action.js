@@ -33,3 +33,13 @@ export const fireTimer = (item) =>({
     payload: item
 })
 
+export const pomoblockIncrease = item =>({
+    type: TodoActionType.POMO_INCREASE,
+    payload: item
+})
+
+export const pomoblockDecrease = item =>({
+    type: TodoActionType.POMO_DECREASE,
+    payload: item
+})
+

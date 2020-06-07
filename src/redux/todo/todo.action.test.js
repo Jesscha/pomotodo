@@ -1,7 +1,7 @@
 import { TodoActionType } from "./todo.types";
 
 import configureStore from "redux-mock-store";
-import { addItem, moveToDone, moveBackToList, deleteItemFromDone, deleteItemFromToDo, fireTimer } from "./todo.action";
+import { addItem, moveToDone, moveBackToList, deleteItemFromDone, deleteItemFromToDo, fireTimer, pomoblockIncrease, pomoblockDecrease} from "./todo.action";
 
 describe("Todo actions", () => {
   const mockStore = configureStore([]);
@@ -71,11 +71,25 @@ describe("Todo actions", () => {
     const fireAction = fireTimer(mockItem)
     expect(fireAction.type).toEqual(TodoActionType.FIRE_TIMER)
     expect(fireAction.payload).toEqual(mockItem)
-
-    
   });
 
+  it("should create a PomoBlock increase Action", ()=>{
+    const mockItem = {
+      id: 1
+    }
+    const fireAction = pomoblockIncrease(mockItem)
+    expect(fireAction.type).toEqual(TodoActionType.POMO_INCREASE)
+    expect(fireAction.payload).toEqual(mockItem)
+  });
 
+  it("should create a PomoBlock decrease Action", ()=>{
+    const mockItem = {
+      id: 1
+    }
+    const fireAction = pomoblockDecrease(mockItem)
+    expect(fireAction.type).toEqual(TodoActionType.POMO_DECREASE)
+    expect(fireAction.payload).toEqual(mockItem)
+  });
 
   
 

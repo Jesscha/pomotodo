@@ -19,6 +19,42 @@ export const changeLiveAndFinishedPomoblocks = ((todoItems, itemToMove)=>{
         }
 
     });
-    
-
 })
+
+
+
+export const increasePomoBlocks=(todoItems, itemToModify) =>{
+    const arr =  todoItems.map(item => { 
+        if (item.id === itemToModify.id){
+            const newItem = {
+                ...item,
+                pomoCount: item.pomoCount +1,
+                livePomoBlocks: item.livePomoBlocks+1, 
+            }
+            console.log(newItem)
+            return newItem
+        }else{
+            return item
+        }
+    })
+    console.log(arr)
+    return arr 
+}
+
+
+export const decreasePomoBlocks= (todoItems, itemToModify) =>{
+    const arr  =  todoItems.map(item => { 
+        if (item.id === itemToModify.id){
+            const newItem = {
+                ...item,
+                pomoCount:  item.pomoCount -1 > 0 ?  item.pomoCount -1 : item.pomoCount,
+                livePomoBlocks: item.livePomoBlocks-1 >= 0 ? item.livePomoBlocks -1 : item.livePomoBlocks, 
+            }
+            return newItem
+        }else{
+            return item
+        }
+    })
+
+    return arr
+}

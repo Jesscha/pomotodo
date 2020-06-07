@@ -1,5 +1,5 @@
 import { TodoActionType } from "./todo.types";
-import { removeFromList, changeLiveAndFinishedPomoblocks} from "./todo.utils";
+import { removeFromList, changeLiveAndFinishedPomoblocks, increasePomoBlocks, decreasePomoBlocks} from "./todo.utils";
 
 const INITIAL_STATE = { 
     todoItems: [],
@@ -20,7 +20,7 @@ const todoReducer = (state = INITIAL_STATE, action) => {
                 todoItems: removeFromList(state.todoItems, action.payload),
                 doneItems : [...state.doneItems, action.payload]
             }
-            
+
         case TodoActionType.MOVE_BACK:
             return {
                 ...state,
@@ -45,6 +45,20 @@ const todoReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 todoItems: changeLiveAndFinishedPomoblocks(state.todoItems, action.payload)
             }
+        
+        case TodoActionType.POMO_INCREASE:
+            return {
+                ...state,
+                todoIems: increasePomoBlocks(state.todoItems, action.payload)
+            }
+
+        case TodoActionType.POMO_DECREASE:
+            return {
+                ...state,
+                todoIems: decreasePomoBlocks(state.todoItems, action.payload)
+            }
+
+
         default:
             return state
     }
