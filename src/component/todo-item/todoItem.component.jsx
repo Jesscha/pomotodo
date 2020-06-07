@@ -1,7 +1,9 @@
 import React from 'react';
 import Pomoblock from '../pomoblock/pomoblock.component';
-import { moveToDone, moveBackToList, deleteItemFromDone, deleteItemFromToDo, fireTimer } from '../../redux/todo/todo.action';
+import { moveToDone, moveBackToList, deleteItemFromDone, deleteItemFromToDo, fireTimer, pomoblockIncrease, pomoblockDecrease } from '../../redux/todo/todo.action';
 import { connect } from 'react-redux';
+
+import './todoItem.styles.scss'
 
 export class TodoItem extends React.Component {
     constructor(props) {
@@ -47,15 +49,17 @@ export class TodoItem extends React.Component {
     }
 
     render() {
-        const { item, moveItem, moveBack, isLive, deleteItemFromToDo, deleteItemFromDone } = this.props
+        const { item, moveItem, moveBack, isLive, deleteItemFromToDo, deleteItemFromDone, addPomoBlocks, removePomoBlocks } = this.props
         const { name, livePomoBlocks, finishedPomoBlocks } = item
         return (
             <li className="todo-item">
 
                 {isLive ?
-                    (<button onClick={() => { this.fireTimerAction(item) }}>
-                        {this.state.itemState === "ready" ? "▶️" : (this.state.itemState === "working" ? "🕐" : "🤘")
-                        }
+                    (<button onClick={() => { this.fireTimerAction(item) }}
+                    className = {this.state.itemState === "ready" ? "ready" : (this.state.itemState === "working" ? "working" : "resting") }
+                    disabled= {this.state.itemState !== "ready" ?  true: false}
+                    >
+                       
                     </button>)
                     : null}
                 <span className="name">
@@ -76,7 +80,10 @@ export class TodoItem extends React.Component {
                     {[...Array(livePomoBlocks)].map((n, index) => (
                         <Pomoblock key={index} />
                     ))}
-                </span>) : null}
+                <button onClick={()=>{addPomoBlocks(item)}}>+</button>
+                <button onClick={()=>{removePomoBlocks(item)}}>-</button>
+                </span>
+                ) : null}
             </li>
         )
     }
@@ -88,7 +95,9 @@ const mapDispatchToProps = dispatch => ({
     moveBack: item => dispatch(moveBackToList(item)),
     deleteItemFromToDo: item => dispatch(deleteItemFromToDo(item)),
     deleteItemFromDone: item => dispatch(deleteItemFromDone(item)),
-    fireTimer: item => dispatch(fireTimer(item))
+    fireTimer: item => dispatch(fireTimer(item)),
+    addPomoBlocks: item => dispatch(pomoblockIncrease(item)),
+    removePomoBlocks: item => dispatch(pomoblockDecrease(item))
 });
 
 

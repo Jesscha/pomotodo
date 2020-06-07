@@ -1,0 +1,17 @@
+.ready{
+    &::after{
+        content: "▶︎";
+    }
+}
+
+.working{
+    &::after{
+        content: "🕐";
+    }
+}
+
+.resting{
+    &::after{
+        content: "🤘";
+    }
+}

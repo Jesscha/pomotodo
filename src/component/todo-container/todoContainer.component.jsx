@@ -11,7 +11,7 @@ export const TodoContainer = ({ todoItems }) => {
                 )}
             </ul>
         </div>
-    )
+    ) 
 }
 
 const mapStateToProps = state => {

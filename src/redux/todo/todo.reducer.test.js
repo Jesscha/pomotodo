@@ -7,6 +7,7 @@ describe("Todo reducers", () => {
   const initialState = {
     todoItems: [],
     doneItems: [],
+    achievedBlocks:0
   };
 
   it("should return the initial state", () => {
@@ -128,7 +129,7 @@ describe("Todo reducers", () => {
     const mockPrevState = {
       todoItems: [{
         id: 1,
-        name:"timer fired item",
+        name:"item to be modifyid",
         pomoCount: 4,
         livePomoBlocks: 4,
         finishedPomoBlocks: 0
@@ -146,7 +147,7 @@ describe("Todo reducers", () => {
       type: TodoActionType.FIRE_TIMER,
       payload:{
         id: 1,
-        name:"timer fired item",
+        name:"item to be modifyid",
         pomoCount: 4,
         livePomoBlocks: 4,
         
@@ -161,7 +162,7 @@ describe("Todo reducers", () => {
     const mockPrevState = {
       todoItems: [{
         id: 1,
-        name:"timer fired item",
+        name:"item to be modifyid",
         pomoCount: 4,
         livePomoBlocks: 4,
         finishedPomoBlocks: 0
@@ -179,10 +180,9 @@ describe("Todo reducers", () => {
       type: TodoActionType.POMO_INCREASE,
       payload:{
         id: 1,
-        name:"timer fired item",
+        name:"item to be modifyid",
         pomoCount: 4,
         livePomoBlocks: 4,
-        
       }
     })
     expect(reducerOutput.todoItems.find(item => item.id ===1).livePomoBlocks).toEqual(5);
@@ -197,7 +197,7 @@ describe("Todo reducers", () => {
     const mockPrevState = {
       todoItems: [{
         id: 1,
-        name:"timer fired item",
+        name:"item to be modifyid",
         pomoCount: 4,
         livePomoBlocks: 4,
         finishedPomoBlocks: 0
@@ -215,7 +215,7 @@ describe("Todo reducers", () => {
       type: TodoActionType.POMO_DECREASE,
       payload:{
         id: 1,
-        name:"timer fired item",
+        name:"item to be modifyid",
         pomoCount: 4,
         livePomoBlocks: 4,
         
