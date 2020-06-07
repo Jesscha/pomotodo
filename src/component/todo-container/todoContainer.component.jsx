@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 export const TodoContainer = ({ todoItems }) => {
     return (
         <div className="todo-container">
+            <h1>to be done</h1>
             <ul className="todo-items">
                 {todoItems.map(item =>
                     <TodoItem key={item.id} item = {item} isLive={1} />

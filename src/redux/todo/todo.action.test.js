@@ -1,7 +1,7 @@
 import { TodoActionType } from "./todo.types";
 
 import configureStore from "redux-mock-store";
-import { addItem, moveToDone, moveBackToList, deleteItemFromDone, deleteItemFromToDo, fireTimer, pomoblockIncrease, pomoblockDecrease} from "./todo.action";
+import { addItem, moveToDone, moveBackToList, deleteItemFromDone, deleteItemFromToDo, fireTimer, pomoblockIncrease, pomoblockDecrease, clearAcheivedBlocks} from "./todo.action";
 
 describe("Todo actions", () => {
   const mockStore = configureStore([]);
@@ -91,6 +91,12 @@ describe("Todo actions", () => {
     expect(fireAction.payload).toEqual(mockItem)
   });
 
+
+  it("should create a clear blocks Action", ()=>{
+    
+    const fireAction = clearAcheivedBlocks();
+    expect(fireAction.type).toEqual(TodoActionType.CLEAR_ACHEIVEMENT);
+  });
   
 
 

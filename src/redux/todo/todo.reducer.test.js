@@ -55,13 +55,15 @@ describe("Todo reducers", () => {
     ).toEqual(0);
   })
 
-  it("should move Item from DoneList to TodoList", ()=>{
+  it("should move Item from DoneList to TodoList with 0 finishedBlocks", ()=>{
     const mockPrevState = {
       todoItems: [],
       doneItems: [{
         id: 1,
         name:"item to be moved",
-        pomoCount: 4
+        pomoCount: 4,
+        livePomoBlocks: 0,
+        finishedPomoBlocks: 4
       }]
     };
     const reducerOutput =todoReducer(mockPrevState, {
@@ -69,15 +71,20 @@ describe("Todo reducers", () => {
       payload:{
         id: 1,
         name:"item to be moved",
-        pomoCount: 4
+        pomoCount: 4,
+        livePomoBlocks: 0,
+        finishedPomoBlocks: 4
       }
     })
     expect(
       reducerOutput.doneItems.length
     ).toEqual(0);
     expect(
-      reducerOutput.todoItems.length
-    ).toEqual(1);
+      reducerOutput.todoItems[0].livePomoBlocks
+    ).toEqual(4);
+    expect(
+      reducerOutput.todoItems[0].finishedPomoBlocks
+    ).toEqual(0);
   })
 
 
@@ -129,7 +136,7 @@ describe("Todo reducers", () => {
     const mockPrevState = {
       todoItems: [{
         id: 1,
-        name:"item to be modifyid",
+        name:"item to be modifyied",
         pomoCount: 4,
         livePomoBlocks: 4,
         finishedPomoBlocks: 0
@@ -147,7 +154,7 @@ describe("Todo reducers", () => {
       type: TodoActionType.FIRE_TIMER,
       payload:{
         id: 1,
-        name:"item to be modifyid",
+        name:"item to be modifyied",
         pomoCount: 4,
         livePomoBlocks: 4,
         
@@ -162,7 +169,7 @@ describe("Todo reducers", () => {
     const mockPrevState = {
       todoItems: [{
         id: 1,
-        name:"item to be modifyid",
+        name:"item to be modifyied",
         pomoCount: 4,
         livePomoBlocks: 4,
         finishedPomoBlocks: 0
@@ -180,7 +187,7 @@ describe("Todo reducers", () => {
       type: TodoActionType.POMO_INCREASE,
       payload:{
         id: 1,
-        name:"item to be modifyid",
+        name:"item to be modifyied",
         pomoCount: 4,
         livePomoBlocks: 4,
       }
@@ -197,7 +204,7 @@ describe("Todo reducers", () => {
     const mockPrevState = {
       todoItems: [{
         id: 1,
-        name:"item to be modifyid",
+        name:"item to be modifyied",
         pomoCount: 4,
         livePomoBlocks: 4,
         finishedPomoBlocks: 0
@@ -215,7 +222,7 @@ describe("Todo reducers", () => {
       type: TodoActionType.POMO_DECREASE,
       payload:{
         id: 1,
-        name:"item to be modifyid",
+        name:"item to be modifyied",
         pomoCount: 4,
         livePomoBlocks: 4,
         
@@ -224,5 +231,24 @@ describe("Todo reducers", () => {
     expect(reducerOutput.todoItems.find(item => item.id ===1).livePomoBlocks).toEqual(3);
     expect(reducerOutput.todoItems.find(item => item.id ===1).pomoCount).toEqual(3);
   })
+
+
+  it("clear the number of acheived blocks", ()=>{
+    const mockPrevState = {
+      todoItems: [],
+      doneItems: [],
+      achievedBlocks: 5
+    };
+    const reducerOutput =todoReducer(mockPrevState, {
+      type: TodoActionType.CLEAR_ACHEIVEMENT
+    }
+    )
+    expect(reducerOutput.achievedBlocks).toEqual(0);
+  })
+
+
+
+
+
 
 });

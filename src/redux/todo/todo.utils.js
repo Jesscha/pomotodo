@@ -58,3 +58,14 @@ export const decreasePomoBlocks = (todoItems, itemToModify) => {
 
   return arr;
 };
+
+export const refreshPomoBlocks = (todoItems, itemToModify) =>{
+  const newItem = {...itemToModify, livePomoBlocks: itemToModify.pomoCount,
+    finishedPomoBlocks: 0}
+
+  return [...todoItems, newItem]
+
+
+
+
+}

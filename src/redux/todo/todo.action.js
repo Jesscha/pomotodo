@@ -43,3 +43,7 @@ export const pomoblockDecrease = item =>({
     payload: item
 })
 
+export const clearAcheivedBlocks = ()=>({
+    type : TodoActionType.CLEAR_ACHEIVEMENT
+})
+

@@ -4,6 +4,7 @@ import {
   changeLiveAndFinishedPomoblocks,
   increasePomoBlocks,
   decreasePomoBlocks,
+  refreshPomoBlocks
 } from "./todo.utils";
 
 const INITIAL_STATE = {
@@ -31,7 +32,7 @@ const todoReducer = (state = INITIAL_STATE, action) => {
     case TodoActionType.MOVE_BACK:
       return {
         ...state,
-        todoItems: [...state.todoItems, action.payload],
+        todoItems: refreshPomoBlocks(state.todoItems, action.payload),
         doneItems: removeFromList(state.doneItems, action.payload),
       };
 
@@ -68,6 +69,11 @@ const todoReducer = (state = INITIAL_STATE, action) => {
         todoItems: decreasePomoBlocks(state.todoItems, action.payload),
       };
 
+    case TodoActionType.CLEAR_ACHEIVEMENT:
+      return {
+        ...state,
+        achievedBlocks: 0
+      }
     default:
       return state;
   }

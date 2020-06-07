@@ -3,33 +3,37 @@ import { connect } from 'react-redux';
 import { addItem } from '../../redux/todo/todo.action';
 import './inputcontainer.styles.scss'
 
-export class InputContainer extends React.Component{
-    constructor(props){
+export class InputContainer extends React.Component {
+    constructor(props) {
         super(props);
         this.state = {
             name: "",
-            pomoCount: 1
+            pomoCount: 3
         }
     }
-    changeState(e){
-        const {name, value} = e.target
-        this.setState({[name] : value})
+    changeState(e) {
+        const { name, value } = e.target
+        this.setState({ [name]: value })
     }
-    
-    initializeState(){
+
+    initializeState() {
         this.setState(
             {
                 name: "",
-                pomoCount: 1
+                pomoCount: 3
             }
         )
     }
 
-    itemAppending(callback){
+    itemAppending(e, callback) {
+        e.preventDefault()
         // 중복되지 않은 아이디를 만들도록 년도+월+시+분+초를 더해서 아이디로 씀
         const date = new Date()
-        const id = date.getFullYear() + date.getMonth() + date.getDate() + date.getHours() + date.getMinutes() + date.getSeconds()
-        if (this.state.name !== ""){
+        const id = date.getFullYear() + date.getMonth() + date.getDate() + date.getHours() + date.getMinutes() + date.getSeconds() + date.getMilliseconds()+ parseInt(Math.random()*100)
+        if (isNaN(parseInt(this.state.pomoCount))) {
+            return
+        }
+        if (this.state.name !== "") {
             const item = {
                 id,
                 name: this.state.name,
@@ -39,23 +43,28 @@ export class InputContainer extends React.Component{
             }
             callback(item)
         }
-       
+
         this.initializeState()
-        
+
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div className="input-container">
-                <input type="text" name="name" value={this.state.name} id="todo-input" onChange={(e)=>this.changeState(e)} placeholder="To-Do Item"/>
-                <input type="number" name="pomoCount" onChange={(e)=>this.changeState(e)} value={this.state.pomoCount} id="pomo-count"/>
-                <button onClick={()=>{this.itemAppending(this.props.addItem)}}>Add to List</button>
+                <form onSubmit={(e) => { this.itemAppending(e, this.props.addItem) }}>
+                    <input type="text" name="name" value={this.state.name} id="todo-input" onChange={(e) => this.changeState(e)} placeholder="To-Do Item" />
+                    <input type="number" name="pomoCount" onChange={(e) => this.changeState(e)} value={this.state.pomoCount} id="pomo-count" min="0" max="10" />
+                    <button >Add to List</button>
+
+
+                </form>
+
             </div>
         )
     }
 }
 
-const mapDispatchToProps = dispatch =>({
+const mapDispatchToProps = dispatch => ({
     addItem: item => dispatch(addItem(item))
 })
 
