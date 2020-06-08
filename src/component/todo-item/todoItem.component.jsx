@@ -9,13 +9,14 @@ import './todoItem.styles.scss'
 import { Checkbox } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-
+import {throttle} from 'lodash'
 export class TodoItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             itemState: "ready"
         }
+        this.hadleThrottle=throttle(this.props.moveItem, 100000)
     }
 
     fireTimerAction = (item) => {
@@ -60,9 +61,8 @@ export class TodoItem extends React.Component {
         return (
             <li className="todo-item">
                 {isLive ? <Checkbox onClick={() => {
-                    
                     setTimeout(() => {
-                        moveItem(item)
+                        this.hadleThrottle(item)
                     }, 700)
                 }} color="primary" /> : <button onClick={() => { moveBack(item) }}>Go Back</button>}
                 {isLive ?
