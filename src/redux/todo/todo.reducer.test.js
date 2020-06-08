@@ -2,6 +2,7 @@ import todoReducer from "./todo.reducer";
 import { TodoActionType } from "./todo.types";
 
 import configureStore from "redux-mock-store";
+import { maxPomoBlocks } from "../../assets/todo.variables";
 
 describe("Todo reducers", () => {
   const initialState = {
@@ -194,6 +195,40 @@ describe("Todo reducers", () => {
     })
     expect(reducerOutput.todoItems.find(item => item.id ===1).livePomoBlocks).toEqual(5);
     expect(reducerOutput.todoItems.find(item => item.id ===1).pomoCount).toEqual(5);
+
+
+
+  })
+
+  it("can't go bryond maxBlocks number", ()=>{
+    const mockPrevState = {
+      todoItems: [{
+        id: 1,
+        name:"item to be modifyied",
+        pomoCount: maxPomoBlocks,
+        livePomoBlocks: maxPomoBlocks,
+        finishedPomoBlocks: 0
+      },{
+        id: 664,
+        name:"item to stay the same",
+        pomoCount: 6,
+        livePomoBlocks: 3,
+        finishedPomoBlocks: 3
+      }
+    ],
+      doneItems: []
+    };
+    const reducerOutput =todoReducer(mockPrevState, {
+      type: TodoActionType.POMO_INCREASE,
+      payload:{
+        id: 1,
+        name:"item to be modifyied",
+        pomoCount: maxPomoBlocks,
+        livePomoBlocks: maxPomoBlocks,
+      }
+    })
+    expect(reducerOutput.todoItems.find(item => item.id ===1).livePomoBlocks).toEqual(maxPomoBlocks);
+    expect(reducerOutput.todoItems.find(item => item.id ===1).pomoCount).toEqual(maxPomoBlocks);
 
 
 

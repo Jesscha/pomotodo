@@ -1,3 +1,5 @@
+import { maxPomoBlocks } from "../../assets/todo.variables";
+
 export const removeFromList = (todoItems, itemToMove) => {
   const arr = todoItems.filter((item) => item.id !== itemToMove.id);
   return arr;
@@ -29,8 +31,8 @@ export const increasePomoBlocks = (todoItems, itemToModify) => {
     if (item.id === itemToModify.id) {
       const newItem = {
         ...item,
-        pomoCount: item.pomoCount + 1,
-        livePomoBlocks: item.livePomoBlocks + 1,
+        pomoCount: item.pomoCount + 1 > maxPomoBlocks? item.pomoCount: item.pomoCount+1,
+        livePomoBlocks: item.livePomoBlocks + 1 > maxPomoBlocks? item.livePomoBlocks : item.livePomoBlocks+1,
       };
       return newItem;
     } else {

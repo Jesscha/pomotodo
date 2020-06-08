@@ -4,6 +4,7 @@ import { addItem } from '../../redux/todo/todo.action';
 import './inputcontainer.styles.scss';
 import { Paper, TextField, Button } from '@material-ui/core'
 import { NumberFormatCustom } from './inputcontainer.utils';
+import { maxPomoBlocks } from '../../assets/todo.variables';
 
 export class InputContainer extends React.Component {
     constructor(props) {
@@ -40,8 +41,8 @@ export class InputContainer extends React.Component {
             const item = {
                 id,
                 name: this.state.name,
-                pomoCount: parseInt(this.state.pomoCount),
-                livePomoBlocks: parseInt(this.state.pomoCount),
+                pomoCount: parseInt(this.state.pomoCount) > maxPomoBlocks ? maxPomoBlocks : parseInt(this.state.pomoCount) ,
+                livePomoBlocks: parseInt(this.state.pomoCount) > maxPomoBlocks ? maxPomoBlocks:  parseInt(this.state.pomoCount),
                 finishedPomoBlocks: 0
             }
             callback(item)
