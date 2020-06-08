@@ -6,44 +6,39 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 import './todoContainer.styles.scss'
+import { itemPerTodoList } from '../../assets/todo.variables';
+import { todoItemPageDown, todoItemPageUp } from '../../redux/todo/todo.action';
 
-export class TodoContainer extends React.Component  {
-    constructor(props){
-        super(props);
-        this.state ={
-            page: 1
-        }
-
-    }
-
-
-
-    render (){
+export const TodoContainer = ({todoItems, todoPage, pageUp, pageDown})=>  {
+    console.log({todoPage, todoItems})
         return (
             <Paper className="container todo-container">
                 <h3 className="todo-title">Crush Them!</h3>
                 <ul className="todo-items">
-                    {this.props.todoItems.map(item =>
+                    {todoItems.slice(itemPerTodoList*(todoPage-1), itemPerTodoList*(todoPage)).map(item =>
                         <TodoItem key={item.id} item = {item} isLive={1} />
                     )}
                 </ul>
                 <div className="todo-pagenation">
-                <ArrowBackIosIcon/>
-                    00/00
-                <ArrowForwardIosIcon/>
+                <ArrowBackIosIcon className="pagenationButton" onClick={()=>{pageDown()}}/>
+                {todoPage} / {Math.ceil(todoItems.length/itemPerTodoList)}
+                <ArrowForwardIosIcon  className="pagenationButton" onClick={()=>{pageUp()}} />
                 </div>
             </Paper>
         ) 
     }
     
-}
+const mapStateToProps = state =>({
+    todoItems : state.todoItem.todoItems,
+    todoPage : state.todoItem.todoPage
+})
 
-const mapStateToProps = state => {
-    return({
-    todoItems: state.todoItem.todoItems
-})}
+const mapDispatchToProps = dispatch =>({
+    pageUp: ()=>{ dispatch( todoItemPageUp())},
+    pageDown: () => {dispatch(todoItemPageDown())}
+})
 
-export default connect(mapStateToProps)(TodoContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(TodoContainer);
 
 
 

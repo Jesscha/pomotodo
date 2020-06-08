@@ -18,13 +18,10 @@ export class TodoItem extends React.Component {
         };
         this.handleMoveItemThrottle = throttle(this.props.moveItem, 100000);
         this.hadleMoveBackThrottle = throttle(this.props.moveBack, 100000);
-
-
     }
 
     fireTimerAction = (item) => {
         // todo: 5분 휴식중 이라는 것을 알게 하는 ui 필요함 
-
         let timeLeft = 1 // 원래는 25분을 초로 환산한 시간.
         if (this.state.itemState === "ready") {
             const handler = setInterval(() => {
@@ -67,7 +64,7 @@ export class TodoItem extends React.Component {
                     setTimeout(() => {
                         this.handleMoveItemThrottle(item)
                     }, 700)
-                }} color="primary" /> : <Checkbox checked="true" onClick={() => {
+                }} color="primary" /> : <Checkbox defaultChecked={true} onClick={() => {
                     setTimeout(() => {
                         this.hadleMoveBackThrottle(item)
                     }, 700)

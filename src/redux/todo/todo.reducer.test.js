@@ -1,14 +1,14 @@
 import todoReducer from "./todo.reducer";
 import { TodoActionType } from "./todo.types";
-
-import configureStore from "redux-mock-store";
 import { maxPomoBlocks } from "../../assets/todo.variables";
+
 
 describe("Todo reducers", () => {
   const initialState = {
     todoItems: [],
     doneItems: [],
-    achievedBlocks:0
+    achievedBlocks:0,
+    todoPage: 1,
   };
 
   it("should return the initial state", () => {
@@ -279,6 +279,36 @@ describe("Todo reducers", () => {
     }
     )
     expect(reducerOutput.achievedBlocks).toEqual(0);
+  })
+
+  it("moves todo page up", ()=>{
+    const mockPrevState = {
+      todoItems: [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+      doneItems: [],
+      todoPage: 2
+    };
+
+    const reducerOutput_pageUp =todoReducer(mockPrevState, {
+      type: TodoActionType.TODO_PAGE_UP
+    }
+    );
+
+    expect(reducerOutput_pageUp.todoPage).toEqual(3);
+  })
+
+  it("moves todo page down", ()=>{
+    const mockPrevState = {
+      todoItems: [],
+      doneItems: [],
+      todoPage: 2
+    };
+    
+    const reducerOutput_pageDown =todoReducer(mockPrevState, {
+      type: TodoActionType.TODO_PAGE_DOWN
+    }
+    );
+    
+    expect(reducerOutput_pageDown.todoPage).toEqual(1);
   })
 
 

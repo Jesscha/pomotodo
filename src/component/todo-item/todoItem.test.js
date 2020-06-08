@@ -12,7 +12,8 @@ describe("<TodoItem />", ()=>{
         livePomoBlocks: 5,
         finishedPomoBlocks: 0
     }
-    const wrapper = shallow(<TodoItem item={mockProps} isLive={true}/>)
+
+    const wrapper = shallow(<TodoItem item={mockProps} moveItem={()=>{}} moveBack={()=>{}} isLive={true}/>)
     it("renders TodoItem", ()=>{
         expect(wrapper).toMatchSnapshot();
     });

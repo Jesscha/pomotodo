@@ -1,7 +1,7 @@
 import { TodoActionType } from "./todo.types";
 
 import configureStore from "redux-mock-store";
-import { addItem, moveToDone, moveBackToList, deleteItemFromDone, deleteItemFromToDo, fireTimer, pomoblockIncrease, pomoblockDecrease, clearAcheivedBlocks} from "./todo.action";
+import { addItem, moveToDone, moveBackToList, deleteItemFromDone, deleteItemFromToDo, fireTimer, pomoblockIncrease, pomoblockDecrease, clearAcheivedBlocks, todoItemPageUp, todoItemPageDown} from "./todo.action";
 
 describe("Todo actions", () => {
   const mockStore = configureStore([]);
@@ -97,8 +97,18 @@ describe("Todo actions", () => {
     const fireAction = clearAcheivedBlocks();
     expect(fireAction.type).toEqual(TodoActionType.CLEAR_ACHEIVEMENT);
   });
+
+  it("should create a todo page-up Action", ()=>{
+    
+    const fireAction = todoItemPageUp();
+    expect(fireAction.type).toEqual(TodoActionType.TODO_PAGE_UP);
+  });
+
+
+  it("should create a todo page-down Action", ()=>{
+    
+    const fireAction = todoItemPageDown();
+    expect(fireAction.type).toEqual(TodoActionType.TODO_PAGE_DOWN);
+  });
   
-
-
-
 });

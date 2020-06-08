@@ -47,3 +47,11 @@ export const clearAcheivedBlocks = ()=>({
     type : TodoActionType.CLEAR_ACHEIVEMENT
 })
 
+export const todoItemPageUp = ()=>({
+    type : TodoActionType.TODO_PAGE_UP
+})
+
+export const todoItemPageDown = ()=>({
+    type : TodoActionType.TODO_PAGE_DOWN
+})
+
