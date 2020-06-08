@@ -6,13 +6,14 @@ import {
   decreasePomoBlocks,
   refreshPomoBlocks
 } from "./todo.utils";
-import { itemPerTodoList } from "../../assets/todo.variables";
+import { itemPerTodoList, itemPerDoneList } from "../../assets/todo.variables";
 
 const INITIAL_STATE = {
   todoItems: [],
   doneItems: [],
   achievedBlocks: 0,
-  todoPage: 1
+  todoPage: 1,
+  donePage: 1
 };
 
 const todoReducer = (state = INITIAL_STATE, action) => {
@@ -87,6 +88,18 @@ const todoReducer = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       todoPage: state.todoPage - 1 > 0 ? state.todoPage - 1 : state.todoPage
+    }
+
+    case TodoActionType.DONE_PAGE_UP:
+      return {
+        ...state,
+        donePage: state.donePage + 1 <= Math.ceil(state.doneItems.length / itemPerDoneList) ? state.donePage + 1 : state.donePage
+      }
+
+    case TodoActionType.DONE_PAGE_DOWN:
+    return {
+      ...state,
+      donePage: state.donePage - 1 > 0 ? state.donePage - 1 : state.donePage
     }
 
     

@@ -3,23 +3,37 @@ import TodoItem  from '../todo-item/todoItem.component'
 import { connect } from 'react-redux'
 import './doneContainer.styles.scss'
 import { Paper } from '@material-ui/core'
+import { itemPerDoneList } from '../../assets/todo.variables'
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import { doneItemPageUp, doneItemPageDown } from '../../redux/todo/todo.action'
 
-
-export const DoneContainer = ({doneItems})=>{
+export const DoneContainer = ({doneItems, donePage, pageUp, pageDown})=>{
     return(
         <Paper className="container done-container">
             <h3 className="done-title">Dead Enemies</h3>
             <ul className="done-items">
-            {doneItems.map(item =>
+            {doneItems.slice(itemPerDoneList*(donePage-1), itemPerDoneList*(donePage)).map(item =>
                     <TodoItem key={item.id} item = {item} isLive={0}/>
                 )}
             </ul>
+            <div className="done-pagenation">
+                <ArrowBackIosIcon className="pagenationButton" onClick={()=>{pageDown()}}/>
+                    {donePage} / {Math.ceil(doneItems.length/itemPerDoneList)}
+                <ArrowForwardIosIcon  className="pagenationButton" onClick={()=>{pageUp()}} />
+                </div>
         </Paper>
     )
 }
 
 const matStateToProps = state =>({
-    doneItems: state.todoItem.doneItems
+    doneItems: state.todoItem.doneItems,
+    donePage: state.todoItem.donePage
 })
 
-export default connect(matStateToProps)(DoneContainer);
+const matDispatchToProps = dispatch => ({
+    pageUp: () => {dispatch(doneItemPageUp())},
+    pageDown: () => {dispatch(doneItemPageDown())}
+})
+
+export default connect(matStateToProps, matDispatchToProps)(DoneContainer);

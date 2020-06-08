@@ -17,12 +17,12 @@ describe("<TodoContainer/ >", ()=>{
         pomoCount: 2
         },
     ]
-    const wrapper = shallow(<TodoContainer todoItems={mockProps}  />)
+    const wrapper = shallow(<TodoContainer todoItems={mockProps} todoPage={1} />)
 
 
     it("renders InpunContainer", ()=>{
         expect(wrapper).toMatchSnapshot();
-    });
+    }); 
 
     it("renders given number of todo Items", ()=>{
         expect(wrapper.find(TodoItem).length).toEqual(2);

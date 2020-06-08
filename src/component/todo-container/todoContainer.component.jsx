@@ -10,7 +10,6 @@ import { itemPerTodoList } from '../../assets/todo.variables';
 import { todoItemPageDown, todoItemPageUp } from '../../redux/todo/todo.action';
 
 export const TodoContainer = ({todoItems, todoPage, pageUp, pageDown})=>  {
-    console.log({todoPage, todoItems})
         return (
             <Paper className="container todo-container">
                 <h3 className="todo-title">Crush Them!</h3>
@@ -34,7 +33,7 @@ const mapStateToProps = state =>({
 })
 
 const mapDispatchToProps = dispatch =>({
-    pageUp: ()=>{ dispatch( todoItemPageUp())},
+    pageUp: ()=>{ dispatch(todoItemPageUp())},
     pageDown: () => {dispatch(todoItemPageDown())}
 })
 

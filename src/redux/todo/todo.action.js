@@ -55,3 +55,13 @@ export const todoItemPageDown = ()=>({
     type : TodoActionType.TODO_PAGE_DOWN
 })
 
+
+export const doneItemPageUp = ()=>({
+    type : TodoActionType.DONE_PAGE_UP
+})
+
+export const doneItemPageDown = ()=>({
+    type : TodoActionType.DONE_PAGE_DOWN
+})
+
+

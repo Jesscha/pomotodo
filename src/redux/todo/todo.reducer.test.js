@@ -9,6 +9,7 @@ describe("Todo reducers", () => {
     doneItems: [],
     achievedBlocks:0,
     todoPage: 1,
+    donePage: 1
   };
 
   it("should return the initial state", () => {
@@ -309,6 +310,36 @@ describe("Todo reducers", () => {
     );
     
     expect(reducerOutput_pageDown.todoPage).toEqual(1);
+  })
+
+  it("moves done page up", ()=>{
+    const mockPrevState = {
+      todoItems: [],
+      doneItems: [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+      donePage: 2
+    };
+
+    const reducerOutput_pageUp =todoReducer(mockPrevState, {
+      type: TodoActionType.DONE_PAGE_UP
+    }
+    );
+
+    expect(reducerOutput_pageUp.donePage).toEqual(3);
+  })
+
+  it("moves done page down", ()=>{
+    const mockPrevState = {
+      todoItems: [],
+      doneItems: [],
+      donePage: 2
+    };
+    
+    const reducerOutput_pageDown =todoReducer(mockPrevState, {
+      type: TodoActionType.DONE_PAGE_DOWN
+    }
+    );
+    
+    expect(reducerOutput_pageDown.donePage).toEqual(1);
   })
 
 

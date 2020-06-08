@@ -16,4 +16,17 @@
         padding-left: 20px;
         width:100%
     }
+
+    .done-pagenation{
+        width:100px;
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        margin-left: -50px;
+        display: flex;
+        align-items: center;
+    }
+    .pagenationButton{
+        cursor: pointer;
+    }
 }
