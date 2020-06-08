@@ -8,7 +8,7 @@ import './todoContainer.styles.scss'
 export const TodoContainer = ({ todoItems }) => {
     return (
         <Paper className="container todo-container">
-            <h3 className="todo-title">Crush Them</h3>
+            <h3 className="todo-title">Crush Them!!</h3>
             <ul className="todo-items">
                 {todoItems.map(item =>
                     <TodoItem key={item.id} item = {item} isLive={1} />

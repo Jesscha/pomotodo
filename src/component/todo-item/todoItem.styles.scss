@@ -1,17 +1,51 @@
-.ready{
-    &::after{
-        content: "▶︎";
+.todo-item{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    position: relative;
+
+    .button-play{
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+    }
+    .button-play:hover{
+        animation: wiggle 300ms 0s infinite ease-out;
+    }
+    .button-working{
+        width: 30px;
+        height: 30px;
+        animation: wiggle 1000ms 0s infinite;
+    }
+
+    .button-resting{
+        width: 30px;
+        height: 30px;
+    }
+
+    .pomocount{
+      display: flex;
+      align-items: center;
+    }
+
+    .buttons-plusminus{
+        position: absolute;
+        right:20px;
+        height: 25px;
+
     }
 }
 
-.working{
-    &::after{
-        content: "🕐";
-    }
-}
 
-.resting{
-    &::after{
-        content: "🤘";
+@keyframes wiggle{
+    from {
+        transform: rotateZ(0);
     }
+
+    to{
+        transform: rotateZ(-360deg);
+
+    }
+
 }

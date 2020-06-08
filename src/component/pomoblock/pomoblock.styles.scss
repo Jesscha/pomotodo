@@ -1,12 +1,14 @@
 .pomoblock{
-    width: 10px;
+    width: 15px;
     height: 20px;
-    background-color: red;
+    background-color: #e0e0e0;
     display: inline-block;
-    border: solid black 3px;
+    border: solid 0.5px white; 
+    
 
     &.finished{
-        background-color: black;
+        background-color: #303f9f;
     }
+   
     
 }
