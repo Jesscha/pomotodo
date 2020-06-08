@@ -4,6 +4,7 @@ import { moveToDone, moveBackToList, deleteItemFromDone, deleteItemFromToDo, fir
 import { connect } from 'react-redux';
 
 import './todoItem.styles.scss'
+import { Checkbox } from '@material-ui/core';
 
 export class TodoItem extends React.Component {
     constructor(props) {
@@ -53,7 +54,8 @@ export class TodoItem extends React.Component {
         const { name, livePomoBlocks, finishedPomoBlocks } = item
         return (
             <li className="todo-item">
-
+                {isLive ? <Checkbox onClick={() => {setTimeout(()=>{moveItem(item)
+                }, 700)}} color="primary"/>: <button onClick={() => { moveBack(item) }}>Go Back</button>}
                 {isLive ?
                     (<button onClick={() => { this.fireTimerAction(item) }}
                     className = {this.state.itemState === "ready" ? "ready" : (this.state.itemState === "working" ? "working" : "resting") }
@@ -65,7 +67,7 @@ export class TodoItem extends React.Component {
                 <span className="name">
                     {name}
                 </span>
-                {isLive ? <button onClick={() => { moveItem(item) }}>Move To Done</button> : <button onClick={() => { moveBack(item) }}>Go Back</button>}
+                
                 <button onClick={() => {
                     if (isLive) {
                         deleteItemFromToDo(item);
