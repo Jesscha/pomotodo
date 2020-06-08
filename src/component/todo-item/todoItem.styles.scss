@@ -11,12 +11,12 @@
         height: 30px;
     }
     .button-play:hover{
-        animation: wiggle 300ms 0s infinite ease-out;
+        animation: spining 300ms 0s infinite ease-out;
     }
     .button-working{
         width: 30px;
         height: 30px;
-        animation: wiggle 1000ms 0s infinite;
+        animation: spining 1000ms 0s infinite;
     }
 
     .button-resting{
@@ -29,7 +29,7 @@
       align-items: center;
     }
 
-    .buttons-plusminus{
+    .buttons-plusminus,.buttons-delete{
         position: absolute;
         right:20px;
         height: 25px;
@@ -38,7 +38,7 @@
 }
 
 
-@keyframes wiggle{
+@keyframes spining{
     from {
         transform: rotateZ(0);
     }

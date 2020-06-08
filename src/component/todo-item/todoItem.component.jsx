@@ -9,14 +9,17 @@ import './todoItem.styles.scss'
 import { Checkbox } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import {throttle} from 'lodash'
+import { throttle } from 'lodash'
 export class TodoItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             itemState: "ready"
-        }
-        this.hadleThrottle=throttle(this.props.moveItem, 100000)
+        };
+        this.handleMoveItemThrottle = throttle(this.props.moveItem, 100000);
+        this.hadleMoveBackThrottle = throttle(this.props.moveBack, 100000);
+
+
     }
 
     fireTimerAction = (item) => {
@@ -56,15 +59,19 @@ export class TodoItem extends React.Component {
     }
 
     render() {
-        const { item, moveItem, moveBack, isLive, deleteItemFromDone, addPomoBlocks, removePomoBlocks } = this.props
+        const { item, isLive, deleteItemFromDone, addPomoBlocks, removePomoBlocks } = this.props
         const { name, livePomoBlocks, finishedPomoBlocks } = item
         return (
             <li className="todo-item">
                 {isLive ? <Checkbox onClick={() => {
                     setTimeout(() => {
-                        this.hadleThrottle(item)
+                        this.handleMoveItemThrottle(item)
                     }, 700)
-                }} color="primary" /> : <button onClick={() => { moveBack(item) }}>Go Back</button>}
+                }} color="primary" /> : <Checkbox checked="true" onClick={() => {
+                    setTimeout(() => {
+                        this.hadleMoveBackThrottle(item)
+                    }, 700)
+                }} color="primary" />}
                 {isLive ?
                     (
                         this.state.itemState === "ready" ?
@@ -88,13 +95,17 @@ export class TodoItem extends React.Component {
                             ))}
                         </span>
                         <ButtonGroup className="buttons-plusminus" color="primary" aria-label="outlined primary button group">
-                            <Button  onClick={() => { addPomoBlocks(item) }}>+</Button>
-                            <Button  onClick={() => { removePomoBlocks(item) }}>-</Button>
+                            <Button onClick={() => { addPomoBlocks(item) }}>+</Button>
+                            <Button onClick={() => { removePomoBlocks(item) }}>-</Button>
                         </ButtonGroup>
                     </>
-                ) : <button onClick={() => {
-                    deleteItemFromDone(item);
-                }}>X</button>}
+                ) :
+                    <ButtonGroup className="buttons-delete" color="primary" aria-label="outlined primary button group">
+                        <Button onClick={() => {
+                            deleteItemFromDone(item);
+                        }}>X</Button>
+                    </ButtonGroup>
+                }
             </li>
         )
     }
