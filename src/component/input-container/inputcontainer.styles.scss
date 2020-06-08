@@ -1,0 +1,27 @@
+.input-container {
+    
+    position: relative;
+    top:0;
+    height: 100px;
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    .input-form{
+        padding-bottom: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+    .input-title{
+        margin:0;
+        position: absolute;
+        top:10px;
+        left:10 px;
+    }
+
+
+    
+
+}

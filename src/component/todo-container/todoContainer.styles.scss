@@ -1,0 +1,15 @@
+.todo-container{
+    position: relative;
+    height: 400px;
+    
+    .todo-title{
+        position: absolute;
+        top:10px;
+        left:10px;
+        margin:0;
+    }
+
+    .todo-items{
+
+    }
+}

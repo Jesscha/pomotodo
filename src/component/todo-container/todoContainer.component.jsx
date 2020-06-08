@@ -1,17 +1,20 @@
 import React from 'react';
 import TodoItem from '../todo-item/todoItem.component';
 import { connect } from 'react-redux';
+import { Paper } from '@material-ui/core';
+
+import './todoContainer.styles.scss'
 
 export const TodoContainer = ({ todoItems }) => {
     return (
-        <div className="todo-container">
-            <h1>to be done</h1>
+        <Paper className="container todo-container">
+            <h3 className="todo-title">Crush Them</h3>
             <ul className="todo-items">
                 {todoItems.map(item =>
                     <TodoItem key={item.id} item = {item} isLive={1} />
                 )}
             </ul>
-        </div>
+        </Paper>
     ) 
 }
 

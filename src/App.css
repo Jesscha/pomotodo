@@ -12,11 +12,35 @@
 }
 
 body{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
   margin: 0;
   padding: 0;
+  background-color: #b3e5fc;
 }
 
 
+#root{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  
+  width: 50%;
+}
+
+.container{
+  margin: 10px
 }
