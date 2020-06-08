@@ -60,6 +60,7 @@ export class TodoItem extends React.Component {
         return (
             <li className="todo-item">
                 {isLive ? <Checkbox onClick={() => {
+                    
                     setTimeout(() => {
                         moveItem(item)
                     }, 700)
