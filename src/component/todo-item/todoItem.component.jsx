@@ -92,13 +92,13 @@ export class TodoItem extends React.Component {
                             ))}
                         </span>
                         <ButtonGroup className="buttons-plusminus" color="primary" aria-label="outlined primary button group">
-                            <Button onClick={() => { addPomoBlocks(item) }}>+</Button>
-                            <Button onClick={() => { removePomoBlocks(item) }}>-</Button>
+                            <Button className="control-button" onClick={() => { addPomoBlocks(item) }}>+</Button>
+                            <Button className="control-button" onClick={() => { removePomoBlocks(item) }}>-</Button>
                         </ButtonGroup>
                     </>
                 ) :
-                    <ButtonGroup className="buttons-delete" color="primary" aria-label="outlined primary button group">
-                        <Button onClick={() => {
+                    <ButtonGroup className="buttons-delete " color="primary" aria-label="outlined primary button group">
+                        <Button className="control-button" onClick={() => {
                             deleteItemFromDone(item);
                         }}>X</Button>
                     </ButtonGroup>

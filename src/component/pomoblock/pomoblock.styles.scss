@@ -9,6 +9,11 @@
     &.finished{
         background-color: #303f9f;
     }
-   
+
     
+   
+    @media (max-width: 414px) {
+        width: 15px;
+        
+    }
 }

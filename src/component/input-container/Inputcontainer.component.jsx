@@ -61,12 +61,9 @@ export class InputContainer extends React.Component {
                         inputComponent: NumberFormatCustom,
                     }} />
                     
-                    <Button variant="contained" color="primary" type="submit">Add to List</Button>
-                    
-                    
+                    <Button className="add-button" variant="contained" color="primary" type="submit">Add to List</Button>
                 </form>
             </Paper>
-
         )
     }
 }

@@ -44,3 +44,18 @@ body{
 .container{
   margin: 10px
 }
+
+@media (max-width: 862px) {
+  .App{
+    width: 70%;
+  }
+  
+}
+
+
+@media (max-width: 731px) {
+  .App{
+    width: 99%;
+  }
+  
+}

@@ -30,10 +30,15 @@
     }
 
     .buttons-plusminus,.buttons-delete{
+        
         position: absolute;
         right:20px;
         height: 25px;
 
+    }
+
+    .control-button span {
+        position: absolute;
     }
 }
 
