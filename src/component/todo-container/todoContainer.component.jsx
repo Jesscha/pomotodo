@@ -4,14 +4,21 @@ import { connect } from 'react-redux';
 import { Paper } from '@material-ui/core';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-
+import PostAddIcon from '@material-ui/icons/PostAdd';
 import './todoContainer.styles.scss'
 import { itemPerTodoList } from '../../assets/todo.variables';
 import { todoItemPageDown, todoItemPageUp } from '../../redux/todo/todo.action';
 
 export const TodoContainer = ({todoItems, todoPage, pageUp, pageDown})=>  {
         return (
-            <Paper className="container todo-container">
+            <Paper className="container todo-container" >
+                <PostAddIcon 
+                color="primary"
+                className="inputButton" onClick={()=>{ 
+                    document.getElementById('inputContainer').style.display = "flex";
+                    }} > 
+                    add 
+                </PostAddIcon>
                 <h3 className="todo-title">Crush Them!</h3>
                 <ul className="todo-items">
                     {todoItems.slice(itemPerTodoList*(todoPage-1), itemPerTodoList*(todoPage)).map(item =>

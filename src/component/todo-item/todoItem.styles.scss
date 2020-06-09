@@ -11,7 +11,7 @@
         height: 30px;
     }
     .button-play:hover{
-        animation: spining 300ms 0s infinite ease-out;
+        // animation: spining 300ms 0s infinite ease-out;
     }
     .button-working{
         width: 30px;
@@ -40,6 +40,8 @@
     .control-button span {
         position: absolute;
     }
+
+    
 }
 
 
@@ -54,3 +56,5 @@
     }
 
 }
+
+

@@ -37,4 +37,21 @@
     .pagenationButton{
         cursor: pointer;
     }
+    .inputButton{
+        display: none;
+    }
+    
+@media (max-width: 500px) {
+    .inputButton{
+        display: flex;
+        position: absolute;
+        cursor: pointer;
+        right: 5px;
+        top: 5px;
+        
+    }
+   
+        
+        
+}
 }
