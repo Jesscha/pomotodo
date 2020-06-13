@@ -19,32 +19,67 @@ export class TodoItem extends React.Component {
         };
         this.handleMoveItemThrottle = throttle(this.props.moveItem, 100000);
         this.hadleMoveBackThrottle = throttle(this.props.moveBack, 100000);
+        this.counterRef = React.createRef();
     }
 
     fireTimerAction = (item) => {
-        // todo: 5분 휴식중 이라는 것을 알게 하는 ui 필요함 
-        let timeLeft = 1 // 원래는 25분을 초로 환산한 시간.
+        let timeLeft = workTime 
         if (this.state.itemState === "ready") {
             const handler = setInterval(() => {
-                timeLeft--
-                if (timeLeft < 0) {
-                    this.props.fireTimer(item)
+                console.log(timeLeft)
+                timeLeft--;
+                if (timeLeft <= 0) {
+                    
                     clearInterval(handler)
                     this.changeButton();
-                    let restTime = 1
+                    let restTime = restingTime;
                     const restHandler = setInterval(() => {
                         restTime--
-                        if (restTime < 0) {
+                        if (restTime <= 0) {
                             clearInterval(restHandler);
                             this.changeButton();
                         }
-                    }, restingTime)
+                    }, 1000)
                 }
-            }, workTime);
+            }, 1000);
+            this.progressAnimation();
         }
         // 상황에 맞춰서 버튼 변화
         this.changeButton();
     }
+
+    progressAnimation() {
+        const count = this.counterRef.current;
+        const unfinishedBlock = count.querySelector(".unfinished");
+        
+        
+        let interval = 1
+        let updatesPerSecond = 1000  //ms
+        let end = unfinishedBlock.max +1
+        let self = this
+        const animator = () => {
+            unfinishedBlock.value = unfinishedBlock.value + interval
+            if (unfinishedBlock.value + interval < end) {
+                console.log(unfinishedBlock.value)
+                setTimeout(animator, updatesPerSecond);
+            } else {
+                unfinishedBlock.value = 0
+                self.props.fireTimer(self.props.item)
+            }
+        }
+
+       setTimeout(()=>{
+        animator()
+       },1000
+       )
+       
+       
+    }
+
+
+
+
+
 
     changeButton = () => {
         if (this.state.itemState === "ready") {
@@ -84,10 +119,10 @@ export class TodoItem extends React.Component {
 
                 {isLive ? (
                     <>
-                        <span className="pomocount">
+                        <span ref={this.counterRef} className="pomocount">
                             {[...Array(finishedPomoBlocks)].map((n, index) => (
                                 <Pomoblock key={index} finished={true} />
-                            ))}
+                            ))} 
                             {[...Array(livePomoBlocks)].map((n, index) => (
                                 <Pomoblock key={index} />
                             ))}

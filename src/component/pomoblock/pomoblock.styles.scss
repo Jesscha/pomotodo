@@ -1,19 +1,22 @@
 .pomoblock{
-    width: 35px;
-    height: 20px;
-    background-color: #e0e0e0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    // color: #f44336;
     display: inline-block;
     border: solid 0.5px white; 
+    width: 35px;
+    height: 20px;
+    // background-color: #e0e0e0;
     
 
     &.finished{
         background-color: #f44336;
     }
+ 
+  
 
-    
-   
-    @media (max-width: 500px) {
+      @media (max-width: 500px) {
         width: 15px;
-        
     }
 }

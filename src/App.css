@@ -66,3 +66,13 @@ ul{
   margin:0;
   padding: 0;
 }
+
+progress::-webkit-progress-bar {
+  background-color: #e0e0e0;
+}
+progress::-webkit-progress-value {
+background-color: #f44336;
+}
+progress::-moz-progress-bar {
+background-color: #e0e0e0;
+}
