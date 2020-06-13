@@ -22,56 +22,66 @@ export class TodoItem extends React.Component {
         this.counterRef = React.createRef();
     }
 
-    fireTimerAction = (item) => {
+    fireTimerAction = () => {
         let timeLeft = workTime 
-        if (this.state.itemState === "ready") {
-            const handler = setInterval(() => {
-                console.log(timeLeft)
-                timeLeft--;
-                if (timeLeft <= 0) {
-                    
-                    clearInterval(handler)
-                    this.changeButton();
-                    let restTime = restingTime;
-                    const restHandler = setInterval(() => {
-                        restTime--
-                        if (restTime <= 0) {
-                            clearInterval(restHandler);
-                            this.changeButton();
-                        }
-                    }, 1000)
-                }
-            }, 1000);
-            this.progressAnimation();
+        const count = this.counterRef.current;
+        const unfinishedBlock = count.querySelector(".unfinished");
+        console.log(unfinishedBlock)
+        if (unfinishedBlock){
+            if (this.state.itemState === "ready") { 
+                const handler = setInterval(() => {
+                    timeLeft--;
+                    if (timeLeft <= 0) {
+                        clearInterval(handler)
+                        this.changeButton();
+                        let restTime = restingTime;
+                        const restHandler = setInterval(() => {
+                            restTime--
+                            if (restTime <= 0) {
+                                clearInterval(restHandler);
+                                this.changeButton();
+                            }
+                        }, 1000)
+                    }
+                }, 1000);
+                this.progressAnimation();
+            }
+            // 상황에 맞춰서 버튼 변화
+            this.changeButton();
+           
+
+        }else{
+            alert("please move this to Dead Enemies or add another block for this task!")
         }
-        // 상황에 맞춰서 버튼 변화
-        this.changeButton();
+       
+       
+            
     }
 
     progressAnimation() {
         const count = this.counterRef.current;
         const unfinishedBlock = count.querySelector(".unfinished");
         
-        
-        let interval = 1
-        let updatesPerSecond = 1000  //ms
-        let end = unfinishedBlock.max +1
-        let self = this
-        const animator = () => {
-            unfinishedBlock.value = unfinishedBlock.value + interval
-            if (unfinishedBlock.value + interval < end) {
-                console.log(unfinishedBlock.value)
-                setTimeout(animator, updatesPerSecond);
-            } else {
-                unfinishedBlock.value = 0
-                self.props.fireTimer(self.props.item)
+        if (unfinishedBlock){
+            let interval = 1
+            let updatesPerSecond = 1000  //ms
+            let end = unfinishedBlock.max +1
+            let self = this
+            const animator = () => {
+                unfinishedBlock.value = unfinishedBlock.value + interval
+                if (unfinishedBlock.value + interval < end) {
+                    setTimeout(animator, updatesPerSecond);
+                } else {
+                    unfinishedBlock.value = 0
+                    self.props.fireTimer(self.props.item)
+                }
             }
-        }
-
-       setTimeout(()=>{
-        animator()
-       },1000
-       )
+           setTimeout(()=>{
+            animator()
+           },1000
+           )
+        } 
+       
        
        
     }
