@@ -1,8 +1,10 @@
 .todo-container{
     position: relative;
-    height: 300px;
+    max-height: 300px;
     display: flex;
     align-items: flex-start;
+    transition: all 1000ms;
+    padding-bottom: 10px;
 
     .todo-title{
         position: absolute;

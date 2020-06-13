@@ -20,7 +20,7 @@ export const BlockAcheivedContainer = ({ achievedBlocks, clearBlocks }) => {
                 >X</span>
             <ul className="status-lists">
                 <li className="status-item">
-                {`Level : ${Math.floor(achievedBlocks%10)+1}`}   
+                {`Level : ${Math.floor(achievedBlocks/10)+1}`}   
                 </li>
                 <li className="status-item">
                 {`crashed blocks : ${achievedBlocks}`}   

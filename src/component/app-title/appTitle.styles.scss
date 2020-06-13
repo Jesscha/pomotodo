@@ -9,6 +9,15 @@
     height: 100px;
     margin: 0;
 }
+
+.info{
+    position: absolute;
+    right: 0;
+    top:0;
+    fill: white;
+    cursor: pointer;
+    z-index: 30;
+}
 .acheivement-icon{
     position: absolute;
     right: 0;
@@ -16,7 +25,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    z-index: 25;
+    
     color: white;
     svg{
         fill: yellow;

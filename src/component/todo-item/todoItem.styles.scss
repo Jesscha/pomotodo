@@ -16,12 +16,13 @@
     .button-working{
         width: 30px;
         height: 30px;
-        animation: spining 1000ms 0s infinite;
+        
     }
 
     .button-resting{
         width: 30px;
         height: 30px;
+        animation: wiggle 1000ms 0s infinite alternate ;
     }
 
     .pomocount{
@@ -41,20 +42,47 @@
         position: absolute;
     }
 
+    .explode{
+        width: 25px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .explode:hover{
+        animation: explosion 400ms 0s infinite forwards alternate-reverse;
+    }
+
+    .explode-wrapper{
+        width: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     
 }
 
 
-@keyframes spining{
+@keyframes wiggle{
     from {
-        transform: rotateZ(0);
+        transform: rotateZ(-50deg);
     }
 
     to{
-        transform: rotateZ(-360deg);
+        transform: rotateZ(-30deg);
+    }
+}
 
+@keyframes explosion{
+    from {
+        transform: scale(2);
     }
 
+    to {
+        transform: scale(1);
+    }
 }
 
 

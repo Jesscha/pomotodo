@@ -9,39 +9,46 @@ import './todoContainer.styles.scss'
 import { itemPerTodoList } from '../../assets/todo.variables';
 import { todoItemPageDown, todoItemPageUp } from '../../redux/todo/todo.action';
 
-export const TodoContainer = ({todoItems, todoPage, pageUp, pageDown})=>  {
-        return (
-            <Paper className="container todo-container" >
-                <PostAddIcon 
+export const TodoContainer = ({ todoItems, todoPage, pageUp, pageDown }) => {
+    return (
+        <Paper className="container todo-container" style={{
+            height: todoItems.length > itemPerTodoList ? "230px": null
+        }}>
+            <PostAddIcon
                 color="primary"
-                className="inputButton" onClick={()=>{ 
+                className="inputButton" onClick={() => {
                     document.getElementById('inputContainer').style.display = "flex";
-                    }} > 
-                    add 
+                }} >
+                add
                 </PostAddIcon>
-                <h3 className="todo-title"> <span role="img" aria-label="emoji">🔥</span> Crush Them </h3>
-                <ul className="todo-items">
-                    {todoItems.slice(itemPerTodoList*(todoPage-1), itemPerTodoList*(todoPage)).map(item =>
-                        <TodoItem key={item.id} item = {item} isLive={1} />
-                    )}
-                </ul>
+            <h3 className="todo-title"> <span role="img" aria-label="emoji">🔥</span> Crush Them </h3>
+            <ul className="todo-items">
+                {todoItems.slice(itemPerTodoList * (todoPage - 1), itemPerTodoList * (todoPage)).map(item =>
+                    <TodoItem key={item.id} item={item} isLive={1} />
+                )}
+            </ul>
+
+            {todoItems.length > itemPerTodoList ?
                 <div className="todo-pagenation">
-                <ArrowBackIosIcon className="pagenationButton" onClick={()=>{pageDown()}}/>
-                {todoPage} / {Math.ceil(todoItems.length/itemPerTodoList)}
-                <ArrowForwardIosIcon  className="pagenationButton" onClick={()=>{pageUp()}} />
+                    <ArrowBackIosIcon className="pagenationButton" onClick={() => { pageDown() }} />
+                    {todoPage} / {Math.ceil(todoItems.length / itemPerTodoList)}
+                    <ArrowForwardIosIcon className="pagenationButton" onClick={() => { pageUp() }} />
                 </div>
-            </Paper>
-        ) 
-    }
-    
-const mapStateToProps = state =>({
-    todoItems : state.todoItem.todoItems,
-    todoPage : state.todoItem.todoPage
+                : null
+            }
+
+        </Paper>
+    )
+}
+
+const mapStateToProps = state => ({
+    todoItems: state.todoItem.todoItems,
+    todoPage: state.todoItem.todoPage
 })
 
-const mapDispatchToProps = dispatch =>({
-    pageUp: ()=>{ dispatch(todoItemPageUp())},
-    pageDown: () => {dispatch(todoItemPageDown())}
+const mapDispatchToProps = dispatch => ({
+    pageUp: () => { dispatch(todoItemPageUp()) },
+    pageDown: () => { dispatch(todoItemPageDown()) }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoContainer);

@@ -3,14 +3,19 @@ import Pomoblock from '../pomoblock/pomoblock.component';
 import { moveToDone, moveBackToList, deleteItemFromDone, fireTimer, pomoblockIncrease, pomoblockDecrease } from '../../redux/todo/todo.action';
 import { connect } from 'react-redux';
 import PlayArrowRoundedIcon from '@material-ui/icons/PlayArrowRounded';
-import RotateLeftRoundedIcon from '@material-ui/icons/RotateLeftRounded';
-import LocalHotelRoundedIcon from '@material-ui/icons/LocalHotelRounded';
+import AirlineSeatReclineExtraIcon from '@material-ui/icons/AirlineSeatReclineExtra';
 import './todoItem.styles.scss'
 import { Checkbox } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { throttle } from 'lodash'
 import { workTime, restingTime } from '../../assets/todo.variables';
+import BlurOnIcon from '@material-ui/icons/BlurOn';
+import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
+import { showNotification, notificationCall } from './todoItem.utils';
+
+
+
 export class TodoItem extends React.Component {
     constructor(props) {
         super(props);
@@ -23,21 +28,27 @@ export class TodoItem extends React.Component {
     }
 
     fireTimerAction = () => {
-        let timeLeft = workTime 
+        let timeLeft = workTime
         const count = this.counterRef.current;
         const unfinishedBlock = count.querySelector(".unfinished");
-        console.log(unfinishedBlock)
-        if (unfinishedBlock){
-            if (this.state.itemState === "ready") { 
+        if (unfinishedBlock) {
+            if (this.state.itemState === "ready") {
                 const handler = setInterval(() => {
                     timeLeft--;
                     if (timeLeft <= 0) {
+                        // web notification 코드, 모듈로 빼자.. 
+                      
+                        // console.log(Notification)
+                        notificationCall( "/assets/logo.png", "Well done! Take a break!!",showNotification)
+
+
                         clearInterval(handler)
                         this.changeButton();
                         let restTime = restingTime;
                         const restHandler = setInterval(() => {
                             restTime--
                             if (restTime <= 0) {
+                                notificationCall( "/assets/logo.png", "Fight again!!",showNotification)
                                 clearInterval(restHandler);
                                 this.changeButton();
                             }
@@ -48,24 +59,24 @@ export class TodoItem extends React.Component {
             }
             // 상황에 맞춰서 버튼 변화
             this.changeButton();
-           
 
-        }else{
+
+        } else {
             alert("please move this to Dead Enemies or add another block for this task!")
         }
-       
-       
-            
+
+
+
     }
 
     progressAnimation() {
         const count = this.counterRef.current;
         const unfinishedBlock = count.querySelector(".unfinished");
-        
-        if (unfinishedBlock){
+
+        if (unfinishedBlock) {
             let interval = 1
             let updatesPerSecond = 1000  //ms
-            let end = unfinishedBlock.max +1
+            let end = unfinishedBlock.max + 1
             let self = this
             const animator = () => {
                 unfinishedBlock.value = unfinishedBlock.value + interval
@@ -76,14 +87,14 @@ export class TodoItem extends React.Component {
                     self.props.fireTimer(self.props.item)
                 }
             }
-           setTimeout(()=>{
-            animator()
-           },1000
-           )
-        } 
-       
-       
-       
+            setTimeout(() => {
+                animator()
+            }, 1000
+            )
+        }
+
+
+
     }
 
 
@@ -106,14 +117,11 @@ export class TodoItem extends React.Component {
         const { name, livePomoBlocks, finishedPomoBlocks } = item
         return (
             <li className="todo-item">
-                {isLive ? <Checkbox onClick={() => {
-                    setTimeout(() => {
-                        this.handleMoveItemThrottle(item)
-                    }, 700)
-                }} color="primary" /> : <Checkbox defaultChecked={true} onClick={() => {
+
+                {isLive ? null : <Checkbox defaultChecked={true} onClick={() => {
                     setTimeout(() => {
                         this.hadleMoveBackThrottle(item)
-                    }, 700)
+                    }, 450)
                 }} color="primary" />}
                 {isLive ?
                     (
@@ -121,7 +129,7 @@ export class TodoItem extends React.Component {
                             <PlayArrowRoundedIcon
                                 className="button-play"
                                 color="primary" onClick={() => { this.fireTimerAction(item) }}
-                            /> : this.state.itemState === "working" ? <RotateLeftRoundedIcon className="button-working" color="primary" /> : <LocalHotelRoundedIcon className="button-resting" color="primary" />)
+                            /> : this.state.itemState === "working" ? <DirectionsRunIcon className="button-working" color="primary" /> : <AirlineSeatReclineExtraIcon className="button-resting" color="primary" />)
                     : null}
                 <span className="todo-name">
                     {name}
@@ -132,14 +140,22 @@ export class TodoItem extends React.Component {
                         <span ref={this.counterRef} className="pomocount">
                             {[...Array(finishedPomoBlocks)].map((n, index) => (
                                 <Pomoblock key={index} finished={true} />
-                            ))} 
+                            ))}
                             {[...Array(livePomoBlocks)].map((n, index) => (
                                 <Pomoblock key={index} />
                             ))}
                         </span>
                         <ButtonGroup className="buttons-plusminus" color="primary" aria-label="outlined primary button group">
+
                             <Button className="control-button" onClick={() => { addPomoBlocks(item) }}>+</Button>
                             <Button className="control-button" onClick={() => { removePomoBlocks(item) }}>-</Button>
+                            <Button onClick={() => {
+                                setTimeout(() => {
+                                    this.handleMoveItemThrottle(item)
+                                }, 400)
+                            }} color="primary" className="explode-wrapper" >
+                                <BlurOnIcon className='explode' color="primary" />
+                            </Button>
                         </ButtonGroup>
                     </>
                 ) :
@@ -149,6 +165,7 @@ export class TodoItem extends React.Component {
                         }}>X</Button>
                     </ButtonGroup>
                 }
+
             </li>
         )
     }
@@ -157,7 +174,6 @@ export class TodoItem extends React.Component {
 const mapDispatchToProps = dispatch => ({
     moveItem: item => dispatch(moveToDone(item)),
     moveBack: item => dispatch(moveBackToList(item)),
-
     deleteItemFromDone: item => dispatch(deleteItemFromDone(item)),
     fireTimer: item => dispatch(fireTimer(item)),
     addPomoBlocks: item => dispatch(pomoblockIncrease(item)),

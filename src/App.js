@@ -7,6 +7,7 @@ import BlockAcheivedContainer from './component/block-acheived-container/blockAc
 import Apptitle  from './component/app-title/appTitle.components';
 import red from '@material-ui/core/colors/red';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import { InfoContainer } from './component/info/info-container.component';
 
 const theme = createMuiTheme({
   palette: {
@@ -23,6 +24,7 @@ function App() {
       <TodoContainer />
       <DoneContainer />
       <BlockAcheivedContainer/>
+      <InfoContainer/>
     </div>
     </MuiThemeProvider>
   );

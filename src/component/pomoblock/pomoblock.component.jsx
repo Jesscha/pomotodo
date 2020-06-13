@@ -11,8 +11,6 @@ const Pomoblock = ({finished}) =>{
         <progress className={`pomoblock unfinished`} value="0" max={workTime} />}
         </>
     )
-
-
 }
 
 export default Pomoblock;
