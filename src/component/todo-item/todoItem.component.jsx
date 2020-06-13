@@ -10,6 +10,7 @@ import { Checkbox } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { throttle } from 'lodash'
+import { workTime, restingTime } from '../../assets/todo.variables';
 export class TodoItem extends React.Component {
     constructor(props) {
         super(props);
@@ -37,9 +38,9 @@ export class TodoItem extends React.Component {
                             clearInterval(restHandler);
                             this.changeButton();
                         }
-                    }, 1000)
+                    }, restingTime)
                 }
-            }, 1000);
+            }, workTime);
         }
         // 상황에 맞춰서 버튼 변화
         this.changeButton();
@@ -106,7 +107,6 @@ export class TodoItem extends React.Component {
             </li>
         )
     }
-
 }
 
 const mapDispatchToProps = dispatch => ({

@@ -19,7 +19,7 @@ export const TodoContainer = ({todoItems, todoPage, pageUp, pageDown})=>  {
                     }} > 
                     add 
                 </PostAddIcon>
-                <h3 className="todo-title">Crush Them!</h3>
+                <h3 className="todo-title"> <span role="img" aria-label="emoji">🔥</span> Crush Them </h3>
                 <ul className="todo-items">
                     {todoItems.slice(itemPerTodoList*(todoPage-1), itemPerTodoList*(todoPage)).map(item =>
                         <TodoItem key={item.id} item = {item} isLive={1} />

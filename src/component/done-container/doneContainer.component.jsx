@@ -11,7 +11,7 @@ import { doneItemPageUp, doneItemPageDown } from '../../redux/todo/todo.action'
 export const DoneContainer = ({doneItems, donePage, pageUp, pageDown})=>{
     return(
         <Paper className="container done-container">
-            <h3 className="done-title">Dead Enemies</h3>
+            <h3 className="done-title"> <span role="img" aria-label="emoji"> 💀 </span> Dead Enemies </h3>
             <ul className="done-items">
             {doneItems.slice(itemPerDoneList*(donePage-1), itemPerDoneList*(donePage)).map(item =>
                     <TodoItem key={item.id} item = {item} isLive={0}/>

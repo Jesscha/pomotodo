@@ -1,25 +1,35 @@
 import React from 'react';
 
 import './blockAcheivedContainer.styles.scss'
-import Pomoblock from '../pomoblock/pomoblock.component';
+// import Pomoblock from '../pomoblock/pomoblock.component';
 import { connect } from 'react-redux';
 import { clearAcheivedBlocks } from '../../redux/todo/todo.action';
 import { Paper } from '@material-ui/core';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+// import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 export const BlockAcheivedContainer = ({ achievedBlocks, clearBlocks }) => {
-
     return (
-        <Paper className="container block-acheived-container">
-            <h3 className="acheived-title" >Acheivements <span>{`(${achievedBlocks})`}</span></h3>
-            <span className="acheived-blocks">
-                {[...Array(achievedBlocks)].map((n, index) => (
-                    <Pomoblock key={index} finished={true} />
-                ))}
-            </span>
-
-            <DeleteForeverIcon className="deleteIcon" color="primary" onClick={() => { clearBlocks() }} />
+        <div className="block-acheived-container container" id="acheivements">
+            <Paper >
+            <h4 className="acheived-title" >Status</h4>
+            <span  
+                className="close-icon"
+                onClick={()=>{
+                    document.getElementById('acheivements').classList.remove("visible");
+                }}
+                >X</span>
+            <ul className="status-lists">
+                <li className="status-item">
+                {`Level : ${Math.floor(achievedBlocks%10)+1}`}   
+                </li>
+                <li className="status-item">
+                {`crashed blocks : ${achievedBlocks}`}   
+                </li>
+            </ul>
+                     
+             {/* <DeleteForeverIcon className="deleteIcon" color="primary" onClick={() => { clearBlocks() }} /> */}
         </Paper>
+        </div>
     )
 }
 

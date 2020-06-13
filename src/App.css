@@ -20,7 +20,7 @@ body{
   align-items: center;
   margin: 0;
   padding: 0;
-  background-color: #c5cae9;
+  background-color: #212121;
 }
 
 
@@ -33,6 +33,7 @@ body{
 }
 
 .App {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -58,4 +59,10 @@ body{
     width: 99%;
   }
   
+}
+
+ul{
+  list-style-type: none;
+  margin:0;
+  padding: 0;
 }

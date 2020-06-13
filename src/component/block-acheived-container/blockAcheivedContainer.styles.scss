@@ -1,8 +1,18 @@
 .block-acheived-container{
-    position: relative;
-
-    height: 200px;
-
+    position: absolute;
+    left: 0px;
+    top: -15px;
+    transform:translateY(-120px);
+    height: 120px;
+    width:150px;
+    transition: all 500ms;
+    &.visible{
+        transform:translateY(0);
+        z-index: 30;
+    }
+    .MuiPaper-root{
+        height:100%;
+    }
     .acheived-title{
         position: absolute;
         top:10px;
@@ -11,7 +21,7 @@
     }
 
     .acheived-blocks{
-        display: inline-block;
+        display: inline-flex;
         padding:0;
         padding-top: 40px;
         padding-left: 20px;
@@ -26,12 +36,29 @@
     }
 
     .deleteIcon:hover{
-        animation: shaking 100ms 0s infinite alternate;
+        // animation: shaking 100ms 0s infinite alternate;
     }
 
-    
+    .close-icon{
+        display: block;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 20;
+        color: rgba(143, 143, 143, 0.933);
+        font-weight: bold;
+        font-size: 15px;
+        cursor: pointer;
+    }
 
+    .status-lists{
+        padding-top: 40px;
+        padding-left: 10px;
+    }
+    .status-item{
 
+    }
+   
 }
 
 @keyframes shaking{
@@ -42,6 +69,8 @@
     to{
         transform: rotateZ(10deg);
     }
+
+   
     
 }
 
