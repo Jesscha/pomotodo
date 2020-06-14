@@ -9,10 +9,11 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { doneItemPageUp, doneItemPageDown } from '../../redux/todo/todo.action'
 
 export const DoneContainer = ({doneItems, donePage, pageUp, pageDown})=>{
+    console.log(doneItems)
     return(
         <Paper className="container done-container"
         style={{
-            height: doneItems.length > itemPerDoneList ? "240px": null
+            height: doneItems.length >= itemPerDoneList ? "240px": null
         }}
         >
             <h3 className="done-title"> <span role="img" aria-label="emoji"> 💀 </span> Dead Enemies </h3>
@@ -22,7 +23,7 @@ export const DoneContainer = ({doneItems, donePage, pageUp, pageDown})=>{
                 )}
             </ul>
 
-            {doneItems.length > itemPerDoneList ?
+            {doneItems.length >= itemPerDoneList ?
                 <div className="done-pagenation">
                 <ArrowBackIosIcon className="pagenationButton" onClick={()=>{pageDown()}}/>
                     {donePage} / {Math.ceil(doneItems.length/itemPerDoneList)}

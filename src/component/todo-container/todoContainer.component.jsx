@@ -12,7 +12,7 @@ import { todoItemPageDown, todoItemPageUp } from '../../redux/todo/todo.action';
 export const TodoContainer = ({ todoItems, todoPage, pageUp, pageDown }) => {
     return (
         <Paper className="container todo-container" style={{
-            height: todoItems.length > itemPerTodoList ? "230px": null
+            height: todoItems.length >= itemPerTodoList ? "230px": null
         }}>
             <PostAddIcon
                 color="primary"
@@ -28,7 +28,7 @@ export const TodoContainer = ({ todoItems, todoPage, pageUp, pageDown }) => {
                 )}
             </ul>
 
-            {todoItems.length > itemPerTodoList ?
+            {todoItems.length >= itemPerTodoList ?
                 <div className="todo-pagenation">
                     <ArrowBackIosIcon className="pagenationButton" onClick={() => { pageDown() }} />
                     {todoPage} / {Math.ceil(todoItems.length / itemPerTodoList)}
