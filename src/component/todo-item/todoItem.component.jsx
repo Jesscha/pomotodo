@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import PlayArrowRoundedIcon from '@material-ui/icons/PlayArrowRounded';
 import AirlineSeatReclineExtraIcon from '@material-ui/icons/AirlineSeatReclineExtra';
 import './todoItem.styles.scss'
-import { Checkbox } from '@material-ui/core';
+import { Checkbox, Unstable_TrapFocus } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { throttle } from 'lodash'
@@ -28,22 +28,25 @@ export class TodoItem extends React.Component {
     }
 
     fireTimerAction = () => {
-        let timeLeft = workTime
+        let timeLeft = workTime;
         const count = this.counterRef.current;
         const unfinishedBlock = count.querySelector(".unfinished");
+        console.log(unfinishedBlock)
         if (unfinishedBlock) {
             if (this.state.itemState === "ready") {
+                
                 const handler = setInterval(() => {
+                    unfinishedBlock.value = unfinishedBlock.max - timeLeft+1;
                     timeLeft--;
                     if (timeLeft <= 0) {
-                        // web notification 코드, 모듈로 빼자.. 
-                      
-                        // console.log(Notification)
+                        // 완료된 블록 추가
+                        this.props.fireTimer(this.props.item)
+                        // 웹 알림 기능
                         notificationCall( "/assets/logo.png", "Well done! Take a break!!",showNotification)
-
-
                         clearInterval(handler)
                         this.changeButton();
+                        // 프로그래스 바 초기화
+                        unfinishedBlock.value = 0 
                         let restTime = restingTime;
                         const restHandler = setInterval(() => {
                             restTime--
@@ -55,7 +58,6 @@ export class TodoItem extends React.Component {
                         }, 1000)
                     }
                 }, 1000);
-                this.progressAnimation();
             }
             // 상황에 맞춰서 버튼 변화
             this.changeButton();
@@ -64,39 +66,7 @@ export class TodoItem extends React.Component {
         } else {
             alert("please move this to Dead Enemies or add another block for this task!")
         }
-
-
-
     }
-
-    progressAnimation() {
-        const count = this.counterRef.current;
-        const unfinishedBlock = count.querySelector(".unfinished");
-
-        if (unfinishedBlock) {
-            let interval = 1
-            let updatesPerSecond = 1000  //ms
-            let end = unfinishedBlock.max + 1
-            let self = this
-            const animator = () => {
-                unfinishedBlock.value = unfinishedBlock.value + interval
-                if (unfinishedBlock.value + interval < end) {
-                    setTimeout(animator, updatesPerSecond);
-                } else {
-                    unfinishedBlock.value = 0
-                    self.props.fireTimer(self.props.item)
-                }
-            }
-            setTimeout(() => {
-                animator()
-            }, 1000
-            )
-        }
-
-
-
-    }
-
 
 
 

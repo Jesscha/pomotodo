@@ -10,6 +10,10 @@ import { itemPerTodoList } from '../../assets/todo.variables';
 import { todoItemPageDown, todoItemPageUp } from '../../redux/todo/todo.action';
 
 export const TodoContainer = ({ todoItems, todoPage, pageUp, pageDown }) => {
+
+    if (todoItems.slice(itemPerTodoList*(todoPage-1), itemPerTodoList*(todoPage)).length === 0 ){
+        pageDown();
+    }
     return (
         <Paper className="container todo-container" style={{
             height: todoItems.length >= itemPerTodoList ? "230px": null
