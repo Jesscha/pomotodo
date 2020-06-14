@@ -21,6 +21,8 @@ export class TodoItem extends React.Component {
             itemState: "ready"
         };
         this.isPaused = false;
+        this.targetTime ='';
+        this.startTime = ''
         this.timeLeft = workTime;
         this.handleMoveItemThrottle = throttle(this.props.moveItem, 100000);
         this.hadleMoveBackThrottle = throttle(this.props.moveBack, 100000);
@@ -29,18 +31,36 @@ export class TodoItem extends React.Component {
     }
 
     fireTimerAction = () => {
+        let isRestarting = false;
+        if (this.isPaused){
+            // 일시정지된 경우, 이전에 남은 시간만큼 더해줌
+            this.targetTime = new Date().setSeconds(new Date().getSeconds() + this.timeLeft);
+            isRestarting = true;
+        }else{
+            // 일시정지가 아닌 경우, 한블록 시간 만큼 더해 줌
+            this.targetTime = new Date().setSeconds(new Date().getSeconds() + workTime);           
+            }       
+        this.startTime = new Date()
         const count = this.counterRef.current;
-        console.log(count)
         const unfinishedBlock = count.querySelector(".unfinished");
-        console.log(unfinishedBlock)
+        
+    
         if (unfinishedBlock) {
-            console.log(this.timeLeft);
+            // 일시 정지 후 다시 시작할때 이전까지 쌓인 벨류를 저장
+            let valueLeft = unfinishedBlock.value;
             if (this.state.itemState === "ready" || (this.state.itemState === "working" && this.isPaused === true)) {
                 this.handler = setInterval(() => {
-                    // 프로그래스 바를 채운다. 
-                    unfinishedBlock.value = unfinishedBlock.max - this.timeLeft+1;
+                    // 시간을 기준으로 프로그래스바를 채움
+                    let untileDonePercentage
+                    if (!isRestarting){
+                         untileDonePercentage =100 - Math.floor(((this.targetTime - new Date())/(this.targetTime - this.startTime))*100)
+                    }else{
+                        untileDonePercentage =(100 - valueLeft)- Math.floor(((this.targetTime - new Date())/(this.targetTime - this.startTime))*(100 - valueLeft)) + valueLeft
+                    }
                     this.timeLeft --;
-                    if (this.timeLeft <= 0) {
+                    
+                    unfinishedBlock.value = untileDonePercentage;
+                    if (untileDonePercentage >= 100) {
                         // 완료된 블록 추가
                         this.timeLeft = workTime;
                         this.props.fireTimer(this.props.item)
@@ -86,7 +106,6 @@ export class TodoItem extends React.Component {
 
         // 아이콘 색을 상태에 따라 바꾸기 위해 ref를 지정 
         const workingIcon= this.workingIconRef.current;
-        console.log(workingIcon) 
 
         if (this.isPaused){
             this.fireTimerAction(this.props.item);
@@ -96,7 +115,6 @@ export class TodoItem extends React.Component {
         }else{
             clearInterval(this.handler);
             this.isPaused = true;
-            console.log(this);
             workingIcon.classList.toggle('paused');
         }
     }
