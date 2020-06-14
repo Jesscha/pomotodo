@@ -70,12 +70,14 @@ export class TodoItem extends React.Component {
                         this.changeButton();
                         // 프로그래스 바 초기화
                         unfinishedBlock.value = 0 
-                        let restTime = restingTime;
-                        const restHandler = setInterval(() => {
-                            restTime--
-                            if (restTime <= 0) {
+                        
+                        this.targetRestTime = new Date().setSeconds(new Date().getSeconds() + restingTime);
+                        this.restStartTime = new Date()
+                        this.restHandler = setInterval(() => {
+                            let resetPercentage =100 - Math.floor(((this.targetRestTime - new Date())/(this.targetRestTime - this.restStartTime))*100);
+                            if (resetPercentage > 100) {
                                 notificationCall( "/assets/logo.png", "Fight again!!",showNotification)
-                                clearInterval(restHandler);
+                                clearInterval(this.restHandler);
                                 this.changeButton();
                             }
                         }, 1000)
@@ -103,7 +105,6 @@ export class TodoItem extends React.Component {
     }
 
     pauseAndreStart = () => {
-
         // 아이콘 색을 상태에 따라 바꾸기 위해 ref를 지정 
         const workingIcon= this.workingIconRef.current;
 
@@ -158,7 +159,9 @@ export class TodoItem extends React.Component {
                             <Button className="control-button" onClick={() => { removePomoBlocks(item) }}>-</Button>
                             <Button onClick={() => {
                                 setTimeout(() => {
-                                    this.handleMoveItemThrottle(item)
+                                    this.handleMoveItemThrottle(item);
+                                    clearInterval(this.handler);
+                                    clearInterval(this.restHandler);
                                 }, 400)
                             }} color="primary" className="explode-wrapper" >
                                 <BlurOnIcon className='explode' color="primary" />
