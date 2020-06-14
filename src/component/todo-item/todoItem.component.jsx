@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import PlayArrowRoundedIcon from '@material-ui/icons/PlayArrowRounded';
 import AirlineSeatReclineExtraIcon from '@material-ui/icons/AirlineSeatReclineExtra';
 import './todoItem.styles.scss'
-import { Checkbox, Unstable_TrapFocus } from '@material-ui/core';
+import { Checkbox } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { throttle } from 'lodash'
@@ -14,36 +14,39 @@ import BlurOnIcon from '@material-ui/icons/BlurOn';
 import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
 import { showNotification, notificationCall } from './todoItem.utils';
 
-
-
 export class TodoItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             itemState: "ready"
         };
+        this.isPaused = false;
+        this.timeLeft = workTime;
         this.handleMoveItemThrottle = throttle(this.props.moveItem, 100000);
         this.hadleMoveBackThrottle = throttle(this.props.moveBack, 100000);
         this.counterRef = React.createRef();
+        this.workingIconRef = React.createRef();
     }
 
     fireTimerAction = () => {
-        let timeLeft = workTime;
         const count = this.counterRef.current;
+        console.log(count)
         const unfinishedBlock = count.querySelector(".unfinished");
         console.log(unfinishedBlock)
         if (unfinishedBlock) {
-            if (this.state.itemState === "ready") {
-                
-                const handler = setInterval(() => {
-                    unfinishedBlock.value = unfinishedBlock.max - timeLeft+1;
-                    timeLeft--;
-                    if (timeLeft <= 0) {
+            console.log(this.timeLeft);
+            if (this.state.itemState === "ready" || (this.state.itemState === "working" && this.isPaused === true)) {
+                this.handler = setInterval(() => {
+                    // 프로그래스 바를 채운다. 
+                    unfinishedBlock.value = unfinishedBlock.max - this.timeLeft+1;
+                    this.timeLeft --;
+                    if (this.timeLeft <= 0) {
                         // 완료된 블록 추가
+                        this.timeLeft = workTime;
                         this.props.fireTimer(this.props.item)
                         // 웹 알림 기능
                         notificationCall( "/assets/logo.png", "Well done! Take a break!!",showNotification)
-                        clearInterval(handler)
+                        clearInterval(this.handler);
                         this.changeButton();
                         // 프로그래스 바 초기화
                         unfinishedBlock.value = 0 
@@ -60,17 +63,14 @@ export class TodoItem extends React.Component {
                 }, 1000);
             }
             // 상황에 맞춰서 버튼 변화
-            this.changeButton();
-
-
+            if( !(this.state.itemState === "working" && this.isPaused === true)){
+                this.changeButton();
+            }
+            
         } else {
             alert("please move this to Dead Enemies or add another block for this task!")
         }
     }
-
-
-
-
 
     changeButton = () => {
         if (this.state.itemState === "ready") {
@@ -79,6 +79,25 @@ export class TodoItem extends React.Component {
             this.setState({ itemState: "resting" })
         } else if (this.state.itemState === "resting") {
             this.setState({ itemState: "ready" })
+        }
+    }
+
+    pauseAndreStart = () => {
+
+        // 아이콘 색을 상태에 따라 바꾸기 위해 ref를 지정 
+        const workingIcon= this.workingIconRef.current;
+        console.log(workingIcon) 
+
+        if (this.isPaused){
+            this.fireTimerAction(this.props.item);
+            this.isPaused = false;
+            workingIcon.classList.toggle('paused');
+            
+        }else{
+            clearInterval(this.handler);
+            this.isPaused = true;
+            console.log(this);
+            workingIcon.classList.toggle('paused');
         }
     }
 
@@ -99,7 +118,7 @@ export class TodoItem extends React.Component {
                             <PlayArrowRoundedIcon
                                 className="button-play"
                                 color="primary" onClick={() => { this.fireTimerAction(item) }}
-                            /> : this.state.itemState === "working" ? <DirectionsRunIcon className="button-working" color="primary" /> : <AirlineSeatReclineExtraIcon className="button-resting" color="primary" />)
+                            /> : this.state.itemState === "working" ? <DirectionsRunIcon ref={this.workingIconRef} className="button-working" color="primary" onClick={() =>{this.pauseAndreStart()}}/> : <AirlineSeatReclineExtraIcon className="button-resting" color="primary" />)
                     : null}
                 <span className="todo-name">
                     {name}
