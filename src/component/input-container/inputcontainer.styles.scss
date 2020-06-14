@@ -61,6 +61,17 @@
             font-size: 15px;
             cursor: pointer;
         }
+
+    
+
+    .input-form{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+
     }
 }
 
@@ -73,7 +84,6 @@
         z-index: 10;
         background-color: rgba(0,0,0,0.3);
     }
-    
 
     .input-container{
         display: flex;
@@ -88,14 +98,7 @@
         margin-top: -140px;
         margin-left: -200px;
     }
-
-    .input-form{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-
-    }
+    
 
    
         
