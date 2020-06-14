@@ -120,10 +120,10 @@ export class TodoItem extends React.Component {
     }
 
     render() {
-        const { item, isLive, deleteItemFromDone, addPomoBlocks, removePomoBlocks } = this.props
+        const { item, isLive, deleteItemFromDone, addPomoBlocks, removePomoBlocks, ishidden } = this.props
         const { name, livePomoBlocks, finishedPomoBlocks } = item
         return (
-            <li className="todo-item">
+            <li className="todo-item" style={{display : ishidden? "none": "flex" }}>
 
                 {isLive ? null : <Checkbox defaultChecked={true} onClick={() => {
                     setTimeout(() => {

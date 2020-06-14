@@ -11,12 +11,12 @@ import { todoItemPageDown, todoItemPageUp } from '../../redux/todo/todo.action';
 
 export const TodoContainer = ({ todoItems, todoPage, pageUp, pageDown }) => {
 
-    if (todoItems.slice(itemPerTodoList*(todoPage-1), itemPerTodoList*(todoPage)).length === 0 ){
+    if (todoItems.slice(itemPerTodoList * (todoPage - 1), itemPerTodoList * (todoPage)).length === 0) {
         pageDown();
     }
     return (
         <Paper className="container todo-container" style={{
-            height: todoItems.length >= itemPerTodoList ? "230px": null
+            height: todoItems.length >= itemPerTodoList ? "230px" : null
         }}>
             <PostAddIcon
                 color="primary"
@@ -27,8 +27,14 @@ export const TodoContainer = ({ todoItems, todoPage, pageUp, pageDown }) => {
                 </PostAddIcon>
             <h3 className="todo-title"> <span role="img" aria-label="emoji">🔥</span> Crush Them </h3>
             <ul className="todo-items">
-                {todoItems.slice(itemPerTodoList * (todoPage - 1), itemPerTodoList * (todoPage)).map(item =>
-                    <TodoItem key={item.id} item={item} isLive={1} />
+                {todoItems.map((item, idx) => {
+                    if (itemPerTodoList * (todoPage - 1) <= idx &&  itemPerTodoList * (todoPage) > idx ){
+                        return (<TodoItem key={item.id} item={item} isLive={true} ishidden={false}/>)
+                    } else{
+                        return (<TodoItem key={item.id} item={item} isLive={true} ishidden={true} />)
+                    }
+                }
+
                 )}
             </ul>
 
