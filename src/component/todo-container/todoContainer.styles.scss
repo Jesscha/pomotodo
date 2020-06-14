@@ -1,6 +1,6 @@
 .todo-container{
     position: relative;
-    height: 55px;
+    min-height: 55px;
     max-height: 300px;
     display: flex;
     align-items: flex-start;
@@ -22,7 +22,7 @@
         list-style: none;
         margin:0;
         padding:0;
-        padding-top: 40px;
+        padding-top: 50px;
         padding-left: 20px;
         width:100%
     }
