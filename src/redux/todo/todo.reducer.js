@@ -21,7 +21,7 @@ const todoReducer = (state = INITIAL_STATE, action) => {
     case TodoActionType.ADD_ITEM:
       return {
         ...state,
-        todoItems: [...state.todoItems, action.payload],
+        todoItems: [ action.payload, ...state.todoItems],
       };
 
     case TodoActionType.MOVE_TO_DONE:
