@@ -17,13 +17,16 @@ export const InfoContainer = () => {
 
         <div className="info-container hidden" id="info-container">
             <Paper className="info-text-wrapper">
+                {/* eslint-disable-next-line */}
                 <h1>Thnak Your for Trying this😍</h1>
                 <p>
                     If you hvave used <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique" target="blank" >Pomodore Technique</a>, This <strong>"POMO CRUSHER" </strong>will help you to fully enjoy that! 🎉 🎉
                     <br /><br />
+                    {/* eslint-disable-next-line */}
                     Still not sure how to use it? Please read the instruction below 😉
                 </p>
                 <h2>Instruction</h2>
+                {/* eslint-disable-next-line */}
                 <h3> ✍🏼Defin Your Enemy</h3>
                 <ul>
                     <li>
@@ -36,7 +39,7 @@ export const InfoContainer = () => {
                         <p className="description">- On "# of 25-mins" field, you can set the number of Pomodoro timer you want.</p>
                     </li>
                 </ul>
-
+                {/* eslint-disable-next-line */}
                 <h2>🔥 Crush Them</h2>
                 <ul>
                     <li>
@@ -68,6 +71,7 @@ export const InfoContainer = () => {
                         <p className="description">- <ButtonGroup color="primary" className="button-description"><Button><BlurOnIcon /></Button></ButtonGroup> moves specific task to Dead Enemies. </p>
                     </li>
                 </ul>
+                {/* eslint-disable-next-line */}
                 <h2> 💀 Dead Enemies </h2>
                 <ul>
                     <li>
@@ -80,6 +84,7 @@ export const InfoContainer = () => {
                         <p className="description">- <ButtonGroup color="primary" className="button-description"><Button>X</Button></ButtonGroup> deletes the task from memory. It can't be reverted.</p>
                     </li>
                 </ul>
+                {/* eslint-disable-next-line */}
                 <h2> 🐱 Miscellaneous</h2>
                 <ul>
                     <li>

@@ -43,6 +43,12 @@
             height: 20px;
             margin: 0 4px;
             // display: inline-block;
+            span{
+                position: absolute;
+            }
+            svg{
+                position: absolute;
+            }
 
         }
     }
@@ -58,4 +64,7 @@
         font-size: 15px;
         cursor: pointer;
     }
+
+
+
 }

@@ -35,11 +35,16 @@
     }
 
     .buttons-plusminus,.buttons-delete{
-        
         position: absolute;
         right:20px;
-        height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
+    .control-button{
+        height: 25px;
+    
     }
 
     .control-button span {
@@ -49,9 +54,6 @@
     .explode{
         width: 25px;
         height: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
     .explode:hover{
@@ -59,10 +61,11 @@
     }
 
     .explode-wrapper{
+        height: 25px;
         width: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        svg{
+            position: absolute;
+        }
     }
 
     
