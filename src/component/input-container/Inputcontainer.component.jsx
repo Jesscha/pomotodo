@@ -57,12 +57,6 @@ export class InputContainer extends React.Component {
             <div id="inputContainer" className="mobile-input-container"
             >
                 <Paper className="container input-container">
-                    <span
-                        className="close-icon"
-                        onClick={() => {
-                            document.getElementById('inputContainer').style.display = "none";
-                        }}
-                    >X</span>
                     <h3 className="input-title"> 
                         <span role="img" aria-label="emoji"> ✍🏼 </span>
                         Define Your Enemy </h3>

@@ -34,6 +34,7 @@
     .todo-input{
         width: 250px;
     }
+    
 
     .pomo-count{
         width: 100px;
@@ -44,62 +45,23 @@
 
     }
 
-
-
     .close-icon{
         display: none;
     }
+
     @media (max-width: 500px) {
-        .close-icon{
-            display: block;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            z-index: 20;
-            color: rgba(143, 143, 143, 0.933);
-            font-weight: bold;
-            font-size: 15px;
-            cursor: pointer;
+        .todo-input{
+            width: 180px;
         }
 
+        .pomo-count{
+            width: 100px;
+        }
     
-
-    .input-form{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-
-    }
-
-    }
-}
-
-@media (max-width: 500px) {
-    .mobile-input-container{
-        display: none;
-        position: absolute;
-        width: 100vw;
-        height: 3000px;
-        z-index: 10;
-        background-color: rgba(0,0,0,0.3);
-    }
-
-    .input-container{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 250px;
-        width:400px;
-        position: absolute;
-        top: 55%;   
-        left: 50%;
-        margin-top: -140px;
-        margin-left: -200px;
-    }
+        .add-button{
+            width: 117px;
     
+        }
 
-   
-        
+    }
 }

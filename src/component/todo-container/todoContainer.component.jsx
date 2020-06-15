@@ -18,13 +18,6 @@ export const TodoContainer = ({ todoItems, todoPage, pageUp, pageDown }) => {
         <Paper className="container todo-container" style={{
             height: todoItems.length >= itemPerTodoList ? "230px" : null
         }}>
-            <PostAddIcon
-                color="primary"
-                className="inputButton" onClick={() => {
-                    document.getElementById('inputContainer').style.display = "flex";
-                }} >
-                add
-                </PostAddIcon>
             <h3 className="todo-title"> <span role="img" aria-label="emoji">🔥</span> Crush Them </h3>
             <ul className="todo-items">
                 {todoItems.map((item, idx) => {
