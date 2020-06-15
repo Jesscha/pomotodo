@@ -6,6 +6,7 @@
     display: flex;
     position: absolute;
     width:100%;
+    min-width: 500;
     height: 100%;
     background-color: rgba(0,0,0,0.3);
    
@@ -14,9 +15,47 @@
         position: absolute;
         top: 25%;
         width: 100%;
-        height: 300px;
-        p{
-            font-size: 20px;
+        // height: 300px;
+       
+    }
+    p{
+        font-size: 20px;
+        
+    }
+
+    a{
+        text-decoration: none;
+        color: orange;
+    }
+
+  
+
+    .description{
+        font-size: 17px;
+        display: flex;
+        // justify-content: center;
+        align-items: center;
+        &.inline{
+            display: inline;
         }
+
+        .button-description{
+            height: 20px;
+            margin: 0 4px;
+            // display: inline-block;
+
+        }
+    }
+
+    .close-icon{
+        display: block;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 20;
+        color: rgba(143, 143, 143, 0.933);
+        font-weight: bold;
+        font-size: 15px;
+        cursor: pointer;
     }
 }
