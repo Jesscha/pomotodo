@@ -165,7 +165,7 @@ export class TodoItem extends React.Component {
                                     clearInterval(this.handler);
                                     clearInterval(this.restHandler);
                                 }, 400)
-                            }} color="primary" className="explode-wrapper" >
+                            }} color="primary" className="done-wrapper" >
                                 Done
                             </Button>
                     </>

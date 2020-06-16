@@ -51,21 +51,14 @@
         position: absolute;
     }
 
-    .explode{
-        width: 25px;
-        height: 20px;
-    }
-
-    .explode:hover{
-        animation: explosion 400ms 0s infinite forwards alternate-reverse;
-    }
-
-    .explode-wrapper{
+ 
+    .done-wrapper{
         height: 25px;
         width: 50px;
-        svg{
-            position: absolute;
-        }
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       
     }
 
     
