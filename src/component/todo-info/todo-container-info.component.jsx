@@ -12,26 +12,26 @@ export const TodoContainerInfo = () => {
     return (
         <ul className ="todo-info">
             <li>
-                <p className="description">- Click <PlayArrowRoundedIcon color="secondary" /> to start Pomodoro Timer.  </p>
+                <p className="description"><PlayArrowRoundedIcon color="secondary" /> &nbsp; Start the timer  </p>
             </li>
             <li>
-                <p className="description">- <DirectionsRunIcon color="secondary" /> means you are working on the task.  </p>
+                <p className="description"><DirectionsRunIcon color="secondary" /> &nbsp; Click to pause  </p>
             </li>
             <li>
-                <p className="description">- Click <DirectionsRunIcon color="secondary" /> to pause the timer.</p>
+                <p className="description"><AirlineSeatReclineExtraIcon color="secondary" />&nbsp;  Rest time</p>
             </li>
             <li>
-                <p className="description">- <AirlineSeatReclineExtraIcon color="secondary" /> means it's break time. Take 5 minutes of break.    </p>
-            </li>
-            <li>
-                <p className="description">- <Pomoblock /> means one Pomodore Timer(25-min). </p>
+                <p className="description pomo-info"><Pomoblock />&nbsp;  Progress Bar </p>
             </li>
 
             <li>
-                <p className="description">- <ButtonGroup color="secondary" className="button-description"><Button>+</Button><Button>-</Button></ButtonGroup> adjusts another Pomodore Blocks on specific task.</p>
+                <p className="description"><ButtonGroup color="secondary" className="button-description"><Button>+</Button></ButtonGroup>&nbsp; Add timer</p>
             </li>
             <li>
-                <p className="description">- <Button color="secondary" className="button-description">Done</Button>moves specific task to Dead Enemies. </p>
+                <p className="description"><ButtonGroup color="secondary" className="button-description"><Button>-</Button></ButtonGroup>&nbsp; Remove timer</p>
+            </li>
+            <li className= "full">
+                <p className="description"><Button color="secondary" className="button-description done-button-info">Done</Button> Moves to Dead Enemies </p>
             </li>
 
         </ul>

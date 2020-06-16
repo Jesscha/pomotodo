@@ -12,7 +12,7 @@
     }
     
     li{
-        width: 50%;
+        width: 30%;
         display: flex;
         // justify-content: center;
         align-items: center;
@@ -40,6 +40,16 @@
             svg{
                 position: absolute;
             }
+        }
+    }
+
+    .checkbox-info{
+        margin-left: -5px;
+    }
+
+    @media (max-width: 500px) {
+        li{
+            width: 50%;
         }
     }
 }

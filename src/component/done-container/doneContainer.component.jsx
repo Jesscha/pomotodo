@@ -29,8 +29,7 @@ export const DoneContainer = ({doneItems, donePage, pageUp, pageDown})=>{
                     <TodoItem key={item.id} item = {item} isLive={0}/>
                 )}
             </ul> : 
-            // <DoneContainerInfo/>
-            null
+            <DoneContainerInfo/>
             }
 
             {doneItems.length >= itemPerDoneList ?

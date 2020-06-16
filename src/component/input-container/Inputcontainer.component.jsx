@@ -70,7 +70,7 @@ export class InputContainer extends React.Component {
 
 
                         <Button className="add-button" variant="contained" color="primary" type="submit"
-                        >Add to List</Button>
+                        >Add</Button>
                     </form>
                 </Paper>
             </div>

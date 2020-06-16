@@ -57,36 +57,42 @@
 
     @media (max-width: 520px) {
         .todo-input{
-            width: 150px;
+            width: 140px;
+            
+            
         }
 
         .pomo-count{
             width: 100px;
             margin-left: 20px;
+            
         }
     
         .add-button{
-            width: 117px;
-    
+            width: 80px;
+            font-size: 13px;    
         }
 
-    .add-button{
-       font-size: 13px;
-        
-        // position: absolute;
-        // right: 10px;
-        // bottom: 10px;
-    }
 
     }
 
     @media (max-width: 446px) {
         .todo-input{
-            width: 120px;
+            width: 90px;
+            label{
+                font-size: 12px;
+            }
         }
         .pomo-count{
-            
+            width: 70px;
             margin-left: 10px;
+            label{
+                font-size: 12px;
+            }
+        }
+        .add-button{
+            width: 60px;
+            font-size: 13px;    
         }
 
     }

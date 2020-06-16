@@ -33,10 +33,7 @@ export const TodoContainer = ({ todoItems, todoPage, pageUp, pageDown }) => {
                 )}
             </ul>
             :
-            // <TodoContainerInfo/>
-            null
-            
-        
+            <TodoContainerInfo/>
         }
             
 
