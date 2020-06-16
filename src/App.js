@@ -12,7 +12,14 @@ import { InfoContainer } from './component/info/info-container.component';
 const theme = createMuiTheme({
   palette: {
     primary: red,
+    secondary: {
+      light: '#ffcdd2',
+      main: '#ffcdd2',
+      dark: '#ffcdd2',
+      contrastText: '#000'
+    }
   },
+  
 });
 
 function App() { 

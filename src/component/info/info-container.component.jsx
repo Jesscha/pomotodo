@@ -81,7 +81,7 @@ export const InfoContainer = () => {
                         <p className="description">- Once you uncheck <Checkbox color="primary" defaultChecked={true} /> , the task go back to the list above.</p>
                     </li>
                     <li>
-                        <p className="description">- <ButtonGroup color="primary" className="button-description"><Button>X</Button></ButtonGroup> deletes the task from memory. It can't be reverted.</p>
+                        <p className="description">- <Button color="primary" className="button-description">X</Button> deletes the task from memory. It can't be reverted.</p>
                     </li>
                 </ul>
                 {/* eslint-disable-next-line */}

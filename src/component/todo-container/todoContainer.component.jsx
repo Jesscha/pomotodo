@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { Paper } from '@material-ui/core';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import PostAddIcon from '@material-ui/icons/PostAdd';
 import './todoContainer.styles.scss'
 import { itemPerTodoList } from '../../assets/todo.variables';
 import { todoItemPageDown, todoItemPageUp } from '../../redux/todo/todo.action';
+import { TodoContainerInfo } from '../todo-info/todo-container-info.component';
 
 export const TodoContainer = ({ todoItems, todoPage, pageUp, pageDown }) => {
 
@@ -19,6 +19,8 @@ export const TodoContainer = ({ todoItems, todoPage, pageUp, pageDown }) => {
             height: todoItems.length >= itemPerTodoList ? "230px" : null
         }}>
             <h3 className="todo-title"> <span role="img" aria-label="emoji">🔥</span> Crush Them </h3>
+
+            {todoItems.length >= 1 ? 
             <ul className="todo-items">
                 {todoItems.map((item, idx) => {
                     if (itemPerTodoList * (todoPage - 1) <= idx &&  itemPerTodoList * (todoPage) > idx ){
@@ -30,6 +32,13 @@ export const TodoContainer = ({ todoItems, todoPage, pageUp, pageDown }) => {
 
                 )}
             </ul>
+            :
+            <TodoContainerInfo/>
+            
+        
+        }
+            
+
 
             {todoItems.length >= itemPerTodoList ?
                 <div className="todo-pagenation">

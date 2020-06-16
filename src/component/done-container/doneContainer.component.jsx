@@ -7,6 +7,7 @@ import { itemPerDoneList } from '../../assets/todo.variables'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { doneItemPageUp, doneItemPageDown } from '../../redux/todo/todo.action'
+import { DoneContainerInfo } from '../done-info/done-container-info.component'
 
 export const DoneContainer = ({doneItems, donePage, pageUp, pageDown})=>{
     console.log(doneItems.length % itemPerDoneList)
@@ -21,12 +22,15 @@ export const DoneContainer = ({doneItems, donePage, pageUp, pageDown})=>{
         }}
         >
             <h3 className="done-title"> <span role="img" aria-label="emoji"> 💀 </span> Dead Enemies </h3>
+            {doneItems.length >= 1 ?
             <ul className="done-items">
             {
             doneItems.slice(itemPerDoneList*(donePage-1), itemPerDoneList*(donePage)).map(item =>
                     <TodoItem key={item.id} item = {item} isLive={0}/>
                 )}
-            </ul>
+            </ul> : 
+            <DoneContainerInfo/>
+            }
 
             {doneItems.length >= itemPerDoneList ?
                 <div className="done-pagenation">

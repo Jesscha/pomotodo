@@ -28,7 +28,7 @@ const todoReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         todoItems: removeFromList(state.todoItems, action.payload),
-        doneItems: [...state.doneItems, action.payload],
+        doneItems: [action.payload, ...state.doneItems ],
         achievedBlocks: state.achievedBlocks + action.payload.finishedPomoBlocks
       };
 
