@@ -10,7 +10,6 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { throttle } from 'lodash'
 import { workTime, restingTime } from '../../assets/todo.variables';
-import BlurOnIcon from '@material-ui/icons/BlurOn';
 import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
 import { showNotification, notificationCall } from './todoItem.utils';
 
@@ -157,16 +156,18 @@ export class TodoItem extends React.Component {
 
                             <Button className="control-button" onClick={() => { addPomoBlocks(item) }}>+</Button>
                             <Button className="control-button" onClick={() => { removePomoBlocks(item) }}>-</Button>
-                            <Button onClick={() => {
+                            
+                        </ButtonGroup>
+
+                        <Button onClick={() => {
                                 setTimeout(() => {
                                     this.handleMoveItemThrottle(item);
                                     clearInterval(this.handler);
                                     clearInterval(this.restHandler);
                                 }, 400)
                             }} color="primary" className="explode-wrapper" >
-                                <BlurOnIcon className='explode' color="primary" />
+                                Done
                             </Button>
-                        </ButtonGroup>
                     </>
                 ) :
                     <ButtonGroup className="buttons-delete " color="primary" aria-label="outlined primary button group">

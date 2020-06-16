@@ -57,21 +57,19 @@ export class InputContainer extends React.Component {
             <div id="inputContainer" className="mobile-input-container"
             >
                 <Paper className="container input-container">
-                    <h3 className="input-title"> 
+                    <h3 className="input-title">
                         <span role="img" aria-label="emoji"> ✍🏼 </span>
                         Define Your Enemy </h3>
                     <form className="input-form" onSubmit={(e) => { this.itemAppending(e, this.props.addItem) }}>
-                        <TextField label="I need to do..." name="name" value={this.state.name} className="todo-input" onChange={(e) => this.changeState(e)} />
-                        <TextField label="# of 25-mins" name="pomoCount" onChange={(e) => this.changeState(e)} value={this.state.pomoCount} className="pomo-count" min="0" max="10" InputProps={{
-                            inputComponent: NumberFormatCustom,
-                        }} />
-                        <Button className="add-button" variant="contained" color="primary" type="submit"
-                            onClick={() => {
-                                if (window.innerWidth <= 500) {
-                                    document.getElementById('inputContainer').style.display = "none";
-                                }
-                            }}
+                        <div>
+                            <TextField label="I need to do..." name="name" value={this.state.name} className="todo-input" onChange={(e) => this.changeState(e)} />
+                            <TextField label="# of 25-mins" name="pomoCount" onChange={(e) => this.changeState(e)} value={this.state.pomoCount} className="pomo-count" min="0" max="10" InputProps={{
+                                inputComponent: NumberFormatCustom,
+                            }} />
+                        </div>
 
+
+                        <Button className="add-button" variant="contained" color="primary" type="submit"
                         >Add to List</Button>
                     </form>
                 </Paper>

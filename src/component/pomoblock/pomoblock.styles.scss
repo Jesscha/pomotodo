@@ -5,7 +5,7 @@
     // color: #f44336;
     display: inline-block;
     border: solid 0.5px white; 
-    width: 35px;
+    width: 50px;
     height: 20px;
     // background-color: #e0e0e0;
     
@@ -13,10 +13,19 @@
     &.finished{
         background-color: #f44336;
     }
+
+
+    @media (max-width: 1000px) {
+        width: 40px;
+    }
+
+    @media (max-width: 800px) {
+        width: 30px;
+    }
  
   
 
       @media (max-width: 500px) {
-        width: 15px;
+        width: 20px;
     }
 }

@@ -18,7 +18,7 @@
         // margin-bottom: 10px;
         width: 100%;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: flex-end;
     }
     .input-title{
@@ -32,35 +32,61 @@
     }
 
     .todo-input{
-        width: 250px;
+        width: 200px;
+        margin-left: 20px;
     }
     
 
     .pomo-count{
         width: 100px;
+        margin-left: 40px;
     }
 
     .add-button{
         margin-top: 20px;
-
+        margin-right: 10px;
+        
+        // position: absolute;
+        // right: 10px;
+        // bottom: 10px;
     }
 
     .close-icon{
         display: none;
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 520px) {
         .todo-input{
-            width: 180px;
+            width: 150px;
         }
 
         .pomo-count{
             width: 100px;
+            margin-left: 20px;
         }
     
         .add-button{
             width: 117px;
     
+        }
+
+    .add-button{
+       font-size: 13px;
+        
+        // position: absolute;
+        // right: 10px;
+        // bottom: 10px;
+    }
+
+    }
+
+    @media (max-width: 446px) {
+        .todo-input{
+            width: 120px;
+        }
+        .pomo-count{
+            
+            margin-left: 10px;
         }
 
     }
