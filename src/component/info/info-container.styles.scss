@@ -18,6 +18,8 @@
         // height: 300px;
        
     }
+
+   
     p{
         font-size: 20px;
         
@@ -42,6 +44,7 @@
         .button-description{
             height: 20px;
             margin: 0 4px;
+            
             // display: inline-block;
             span{
                 position: absolute;
@@ -51,6 +54,7 @@
             }
 
         }
+       
     }
 
     .close-icon{
@@ -63,6 +67,14 @@
         font-weight: bold;
         font-size: 15px;
         cursor: pointer;
+    }
+
+    .del-icon-info{
+        min-width: 34px;
+    }
+
+    .acheivement-button-info{
+        margin: 0 10px;
     }
 
 

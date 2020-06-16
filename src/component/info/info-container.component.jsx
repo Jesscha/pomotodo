@@ -60,7 +60,6 @@ export const InfoContainer = () => {
                     <li>
                         <p className="description inline">- Each  <Pomoblock /> means 25-min of Pomodore Timer. It turns to  <Pomoblock finished={true} /> once it hits 25-min. </p>
                     </li>
-
                     <li>
                         <p className="description">- <ButtonGroup color="primary" className="button-description"><Button>+</Button></ButtonGroup> adds another Pomodore Blocks on specific task.</p>
                     </li>
@@ -68,7 +67,7 @@ export const InfoContainer = () => {
                         <p className="description">- <ButtonGroup color="primary" className="button-description"><Button>-</Button></ButtonGroup> subtracts another Pomodore Blocks on specific task.</p>
                     </li>
                     <li>
-                        <p className="description">- <ButtonGroup color="primary" className="button-description"><Button><BlurOnIcon /></Button></ButtonGroup> moves specific task to Dead Enemies. </p>
+                        <p className="description">- <Button className="button-description" color="primary">DONE</Button> moves specific task to Dead Enemies. </p>
                     </li>
                 </ul>
                 {/* eslint-disable-next-line */}
@@ -78,24 +77,22 @@ export const InfoContainer = () => {
                         <p className="description">- This is the place where acheived tasks rest in peace.</p>
                     </li>
                     <li>
-                        <p className="description">- Once you uncheck <Checkbox color="primary" defaultChecked={true} /> , the task go back to the list above.</p>
+                        <p className="description">- <Checkbox color="primary" checked={true} /> revives the task.</p>
                     </li>
                     <li>
-                        <p className="description">- <Button color="primary" className="button-description">X</Button> deletes the task from memory. It can't be reverted.</p>
+                        <p className="description " >- <Button color="primary" className="button-description del-icon-info">X</Button> deletes the task from memory. It can't be reverted.</p>
                     </li>
                 </ul>
                 {/* eslint-disable-next-line */}
                 <h2> 🐱 Miscellaneous</h2>
                 <ul>
                     <li>
-                        <p className="description">- When <StarBorderIcon style={{ fill: "rgb(193, 193, 40)" }} /> clicked, acheieved blocks and level will show up.</p>
+                        <p className="description">- <StarBorderIcon className="acheivement-button-info" style={{ fill: "rgb(193, 193, 40)" }} /> shows acheieved blocks and level will show up.</p>
                     </li>
                     {/* <li>
                         <p className="description">- If you want to support the developer, please check this.</p>
                     </li> */}
-                    
                 </ul>
-
                 <span
                     className="close-icon"
                     onClick={() => {
@@ -103,11 +100,6 @@ export const InfoContainer = () => {
                         infoContainer.classList.toggle("hidden")
                     }}
                 >X</span>
-
-
-
-
-
             </Paper>
         </div>
     )

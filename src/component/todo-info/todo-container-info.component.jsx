@@ -31,7 +31,7 @@ export const TodoContainerInfo = () => {
                 <p className="description"><ButtonGroup color="secondary" className="button-description"><Button>-</Button></ButtonGroup>&nbsp; Remove timer</p>
             </li>
             <li className= "full">
-                <p className="description"><Button color="secondary" className="button-description done-button-info">Done</Button> Moves to Dead Enemies </p>
+                <p className="description"><Button color="secondary" className="button-description done-button-info">Done</Button> Move to Dead Enemies </p>
             </li>
 
         </ul>
