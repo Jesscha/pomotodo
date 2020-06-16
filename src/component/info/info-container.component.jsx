@@ -7,7 +7,6 @@ import AirlineSeatReclineExtraIcon from '@material-ui/icons/AirlineSeatReclineEx
 import Pomoblock from '../pomoblock/pomoblock.component';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import BlurOnIcon from '@material-ui/icons/BlurOn';
 import { Checkbox } from '@material-ui/core';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
