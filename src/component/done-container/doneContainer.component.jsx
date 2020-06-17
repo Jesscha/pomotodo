@@ -10,7 +10,6 @@ import { doneItemPageUp, doneItemPageDown } from '../../redux/todo/todo.action'
 import { DoneContainerInfo } from '../done-info/done-container-info.component'
 
 export const DoneContainer = ({doneItems, donePage, pageUp, pageDown})=>{
-    console.log(doneItems.length % itemPerDoneList)
     if (doneItems.slice(itemPerDoneList*(donePage-1), itemPerDoneList*(donePage)).length === 0 ){
         pageDown();
     }

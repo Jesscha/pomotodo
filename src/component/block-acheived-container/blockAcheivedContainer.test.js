@@ -11,15 +11,7 @@ describe("<BlockAcheivedContainer />", ()=>{
 
     it("renders BlockAcheivedContainer", ()=>{
         expect(wrapper).toMatchSnapshot();
-    }); 
-
-    
-
-    it("renders given amount of PomoBlocks", ()=>{
-        expect(wrapper.find(Pomoblock).length).toEqual(3);
-    }); 
-
-    
+    });     
     })
 
 
