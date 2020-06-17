@@ -23,6 +23,28 @@
         fill: orange;
     }
 
+    .todo-name{
+        position: relative;
+        @media (max-width: 500px){
+            font-size: 14px;
+        }
+        
+        .full-name{
+            opacity: 0;
+            position: absolute;
+            left: 0;
+            transition: all 500ms;
+            color: black;
+            padding: 5px;
+            
+        }
+        .full-name:hover{
+            opacity: 1;
+            transform: translate(10px, -10px);
+            // transform: translateY(-30px);
+        }
+    }
+
     .button-resting{
         width: 30px;
         height: 30px;
@@ -63,6 +85,8 @@
         }
        
     }
+
+    
 
     
 }

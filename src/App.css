@@ -38,23 +38,31 @@ body{
   flex-direction: column;
   justify-content: center;
   /* align-items: center; */
-  
-  width: 60%;
+  width: 50%;
 }
 
 .container{
   margin: 10px
 }
 
-@media (max-width: 862px) {
+@media (max-width: 1200px) {
   .App{
-    width: 90%;
+    width: 60%;
   }
   
 }
 
 
-@media (max-width: 731px) {
+/* 여백을 줄임  */
+@media (max-width: 1000px) {
+  .App{
+    width: 70%;
+  }
+  
+}
+
+/* 아이패드 미니 사이즈 부터 화면을 거의 가득 채우도록 함 */
+@media (max-width: 768px) {
   .App{
     width: 99%;
   }

@@ -76,23 +76,41 @@
 
     }
 
-    @media (max-width: 446px) {
+    @media (max-width: 414px) {
         .todo-input{
             width: 120px;
+            label{
+                font-size: 14px;
+            }
+        }
+        .pomo-count{
+            width: 90px;
+            margin-left: 40px;
+            label{
+                font-size: 14px;
+            }
+        }
+        .add-button{
+            width: 50px;
+            min-width: 50px;
+            font-size: 13px;    
+        }
+
+    }
+
+    @media (max-width: 320px) {
+        .todo-input{
+            width: 110px;
             label{
                 font-size: 12px;
             }
         }
         .pomo-count{
-            width: 90px;
+            width: 80px;
             margin-left: 10px;
             label{
                 font-size: 12px;
             }
-        }
-        .add-button{
-            width: 60px;
-            font-size: 13px;    
         }
 
     }

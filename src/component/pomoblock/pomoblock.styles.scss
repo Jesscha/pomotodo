@@ -5,7 +5,7 @@
     // color: #f44336;
     display: inline-block;
     border: solid 0.5px white; 
-    width: 50px;
+    width: 40px;
     height: 20px;
     // background-color: #e0e0e0;
     
@@ -16,16 +16,17 @@
 
 
     @media (max-width: 1000px) {
-        width: 40px;
+        width: 35px;
     }
 
-    @media (max-width: 800px) {
-        width: 30px;
+    @media (max-width: 768px) {
+        width: 35px;
     }
+
+
+
  
-  
-
-      @media (max-width: 500px) {
-        width: 20px;
+    @media (max-width: 566px) {
+        width: 15px;
     }
 }

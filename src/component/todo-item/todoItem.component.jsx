@@ -12,6 +12,7 @@ import { throttle } from 'lodash'
 import { workTime, restingTime } from '../../assets/todo.variables';
 import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
 import { showNotification, notificationCall } from './todoItem.utils';
+import Chip from '@material-ui/core/Chip';
 
 export class TodoItem extends React.Component {
     constructor(props) {
@@ -139,9 +140,25 @@ export class TodoItem extends React.Component {
                             /> : this.state.itemState === "working" ? <DirectionsRunIcon ref={this.workingIconRef} className="button-working" color="primary" onClick={() =>{this.pauseAndreStart()}}/> : <AirlineSeatReclineExtraIcon className="button-resting" color="primary" />)
                     : null}
                 <span className="todo-name">
-                    {name}
+
+                {window.innerWidth > 1000? 
+                    <>
+                    <span>{  name.length > 17 ? `${name.slice(0,15)}...` : name}</span>
+                    {name.length > 17 ?     
+                    <Chip size="small" label={name}  className ="full-name"/>
+                    : null}
+                    </>
+                    :
+                    <>
+                    <span>{  name.length > 7 ? `${name.slice(0,6)}...` : name}</span>
+                    {name.length > 7 ?     
+                    <Chip size="small" label={name}  className ="full-name"/>
+                    : null}
+                    </>
+                }
                 </span>
 
+                    
                 {isLive ? (
                     <>
                         <span ref={this.counterRef} className="pomocount">
