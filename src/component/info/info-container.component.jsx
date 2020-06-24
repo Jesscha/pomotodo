@@ -22,7 +22,10 @@ export const InfoContainer = () => {
                     If you've used <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique" target="blank" >Pomodore Technique</a>, This <strong>"POMO CRUSHER" </strong>will help you to fully enjoy that! 🎉 🎉
                     <br /><br />
                     {/* eslint-disable-next-line */}
-                    Still not sure how to use it? Please read the instruction below 😉
+                    Still not sure how to use it? Please read the instruction below. 😉
+                    <a href="https://www.notion.so/Pomocrusher-1-0-986ed7e3a86a40b78eea024c946896bf" target="blank"> (한국어 페이지 방문하기)</a>
+                    <br /><br />
+                    Also, it will be super beneficial to "POMO CRUSHER" if you give some  <a href="https://forms.gle/mu3Sfh8AACRdwePb6" target="blank">feedback</a>.
                 </p>
                 <h2>Instruction</h2>
                 {/* eslint-disable-next-line */}
