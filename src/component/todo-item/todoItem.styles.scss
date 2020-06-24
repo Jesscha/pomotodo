@@ -1,115 +1,110 @@
-.todo-item{
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  position: relative;
+
+  .button-play {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+  }
+  .button-play:hover {
+    // animation: spining 300ms 0s infinite ease-out;
+  }
+  .button-working {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+  .paused {
+    fill: orange;
+  }
+
+  .todo-name {
+    position: relative;
+    @media (max-width: 500px) {
+      font-size: 14px;
+    }
+
+    .full-name {
+      opacity: 0;
+      position: absolute;
+      z-index: 2;
+      left: 0;
+      transition: all 500ms;
+      color: black;
+      padding: 5px;
+    }
+    .full-name:hover {
+      opacity: 1;
+      transform: translate(10px, -10px);
+      // transform: translateY(-30px);
+    }
+  }
+
+  .button-resting {
+    width: 30px;
+    height: 30px;
+    animation: wiggle 1000ms 0s infinite alternate;
+  }
+
+  .pomocount {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    width: 100%;
+  }
+
+  .buttons-plusminus,
+  .buttons-delete {
+    position: absolute;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .control-button {
+    height: 25px;
+  }
+
+  .control-button span {
+    position: absolute;
+  }
+
+  .done-wrapper {
+    height: 25px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span {
+      position: absolute;
+      z-index: 0;
+    }
+  }
+  .hover-text {
     position: relative;
-
-    .button-play{
-        cursor: pointer;
-        width: 30px;
-        height: 30px;
-    }
-    .button-play:hover{
-        // animation: spining 300ms 0s infinite ease-out;
-    }
-    .button-working{
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-        
-    }
-    .paused{
-        fill: orange;
-    }
-
-    .todo-name{
-        position: relative;
-        @media (max-width: 500px){
-            font-size: 14px;
-        }
-        
-        .full-name{
-            opacity: 0;
-            position: absolute;
-            left: 0;
-            transition: all 500ms;
-            color: black;
-            padding: 5px;
-            
-        }
-        .full-name:hover{
-            opacity: 1;
-            transform: translate(10px, -10px);
-            // transform: translateY(-30px);
-        }
-    }
-
-    .button-resting{
-        width: 30px;
-        height: 30px;
-        animation: wiggle 1000ms 0s infinite alternate ;
-    }
-
-    .pomocount{
-      display: flex;
-      align-items: center;
-    }
-
-    .buttons-plusminus,.buttons-delete{
-        position: absolute;
-        right:10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .control-button{
-        height: 25px;
-    
-    }
-
-    .control-button span {
-        position: absolute;
-    }
-
- 
-    .done-wrapper{
-        height: 25px;
-        width: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        span{
-            position: absolute;
-        }
-       
-    }
-
-    
-
-    
+    z-index: 1;
+  }
 }
 
+@keyframes wiggle {
+  from {
+    transform: rotateZ(-50deg);
+  }
 
-@keyframes wiggle{
-    from {
-        transform: rotateZ(-50deg);
-    }
-
-    to{
-        transform: rotateZ(-30deg);
-    }
+  to {
+    transform: rotateZ(-30deg);
+  }
 }
 
-@keyframes explosion{
-    from {
-        transform: scale(2);
-    }
+@keyframes explosion {
+  from {
+    transform: scale(2);
+  }
 
-    to {
-        transform: scale(1);
-    }
+  to {
+    transform: scale(1);
+  }
 }
-
-

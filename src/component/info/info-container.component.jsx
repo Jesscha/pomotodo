@@ -19,7 +19,7 @@ export const InfoContainer = () => {
                 {/* eslint-disable-next-line */}
                 <h1>Thnak Your for Trying this😍</h1>
                 <p>
-                    If you hvave used <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique" target="blank" >Pomodore Technique</a>, This <strong>"POMO CRUSHER" </strong>will help you to fully enjoy that! 🎉 🎉
+                    If you've used <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique" target="blank" >Pomodore Technique</a>, This <strong>"POMO CRUSHER" </strong>will help you to fully enjoy that! 🎉 🎉
                     <br /><br />
                     {/* eslint-disable-next-line */}
                     Still not sure how to use it? Please read the instruction below 😉

@@ -21,7 +21,7 @@ export class TodoItem extends React.Component {
             itemState: "ready"
         };
         this.isPaused = false;
-        this.targetTime ='';
+        this.targetTime = '';
         this.startTime = ''
         this.timeLeft = workTime;
         this.handleMoveItemThrottle = throttle(this.props.moveItem, 100000);
@@ -32,19 +32,19 @@ export class TodoItem extends React.Component {
 
     fireTimerAction = () => {
         let isRestarting = false;
-        if (this.isPaused){
+        if (this.isPaused) {
             // 일시정지된 경우, 이전에 남은 시간만큼 더해줌
             this.targetTime = new Date().setSeconds(new Date().getSeconds() + this.timeLeft);
             isRestarting = true;
-        }else{
+        } else {
             // 일시정지가 아닌 경우, 한블록 시간 만큼 더해 줌
-            this.targetTime = new Date().setSeconds(new Date().getSeconds() + workTime);           
-            }       
+            this.targetTime = new Date().setSeconds(new Date().getSeconds() + workTime);
+        }
         this.startTime = new Date()
         const count = this.counterRef.current;
         const unfinishedBlock = count.querySelector(".unfinished");
-        
-    
+
+
         if (unfinishedBlock) {
             // 일시 정지 후 다시 시작할때 이전까지 쌓인 벨류를 저장
             let valueLeft = unfinishedBlock.value;
@@ -52,31 +52,31 @@ export class TodoItem extends React.Component {
                 this.handler = setInterval(() => {
                     // 시간을 기준으로 프로그래스바를 채움
                     let untileDonePercentage
-                    if (!isRestarting){
-                         untileDonePercentage =100 - Math.floor(((this.targetTime - new Date())/(this.targetTime - this.startTime))*100)
-                    }else{
-                        untileDonePercentage =(100 - valueLeft)- Math.floor(((this.targetTime - new Date())/(this.targetTime - this.startTime))*(100 - valueLeft)) + valueLeft
+                    if (!isRestarting) {
+                        untileDonePercentage = 100 - Math.floor(((this.targetTime - new Date()) / (this.targetTime - this.startTime)) * 100)
+                    } else {
+                        untileDonePercentage = (100 - valueLeft) - Math.floor(((this.targetTime - new Date()) / (this.targetTime - this.startTime)) * (100 - valueLeft)) + valueLeft
                     }
-                    this.timeLeft --;
-                    
+                    this.timeLeft--;
+
                     unfinishedBlock.value = untileDonePercentage;
                     if (untileDonePercentage >= 100) {
                         // 완료된 블록 추가
                         this.timeLeft = workTime;
                         this.props.fireTimer(this.props.item)
                         // 웹 알림 기능
-                        notificationCall( "/assets/logo.png", "Well done! Take a break!!",showNotification)
+                        notificationCall("/assets/logo.png", "Well done! Take a break!!", showNotification)
                         clearInterval(this.handler);
                         this.changeButton();
                         // 프로그래스 바 초기화
-                        unfinishedBlock.value = 0 
-                        
+                        unfinishedBlock.value = 0
+
                         this.targetRestTime = new Date().setSeconds(new Date().getSeconds() + restingTime);
                         this.restStartTime = new Date()
                         this.restHandler = setInterval(() => {
-                            let resetPercentage =100 - Math.floor(((this.targetRestTime - new Date())/(this.targetRestTime - this.restStartTime))*100);
+                            let resetPercentage = 100 - Math.floor(((this.targetRestTime - new Date()) / (this.targetRestTime - this.restStartTime)) * 100);
                             if (resetPercentage > 100) {
-                                notificationCall( "/assets/logo.png", "Fight again!!",showNotification)
+                                notificationCall("/assets/logo.png", "Fight again!!", showNotification)
                                 clearInterval(this.restHandler);
                                 this.changeButton();
                             }
@@ -85,10 +85,10 @@ export class TodoItem extends React.Component {
                 }, 1000);
             }
             // 상황에 맞춰서 버튼 변화
-            if( !(this.state.itemState === "working" && this.isPaused === true)){
+            if (!(this.state.itemState === "working" && this.isPaused === true)) {
                 this.changeButton();
             }
-            
+
         } else {
             alert("please move this to Dead Enemies or add another block for this task!")
         }
@@ -106,14 +106,14 @@ export class TodoItem extends React.Component {
 
     pauseAndreStart = () => {
         // 아이콘 색을 상태에 따라 바꾸기 위해 ref를 지정 
-        const workingIcon= this.workingIconRef.current;
+        const workingIcon = this.workingIconRef.current;
 
-        if (this.isPaused){
+        if (this.isPaused) {
             this.fireTimerAction(this.props.item);
             this.isPaused = false;
             workingIcon.classList.toggle('paused');
-            
-        }else{
+
+        } else {
             clearInterval(this.handler);
             this.isPaused = true;
             workingIcon.classList.toggle('paused');
@@ -124,7 +124,7 @@ export class TodoItem extends React.Component {
         const { item, isLive, deleteItemFromDone, addPomoBlocks, removePomoBlocks, ishidden } = this.props
         const { name, livePomoBlocks, finishedPomoBlocks } = item
         return (
-            <li className="todo-item" style={{display : ishidden? "none": "flex" }}>
+            <li className="todo-item" style={{ display: ishidden ? "none" : "flex" }}>
 
                 {isLive ? null : <Checkbox defaultChecked={true} onClick={() => {
                     setTimeout(() => {
@@ -137,28 +137,28 @@ export class TodoItem extends React.Component {
                             <PlayArrowRoundedIcon
                                 className="button-play"
                                 color="primary" onClick={() => { this.fireTimerAction(item) }}
-                            /> : this.state.itemState === "working" ? <DirectionsRunIcon ref={this.workingIconRef} className="button-working" color="primary" onClick={() =>{this.pauseAndreStart()}}/> : <AirlineSeatReclineExtraIcon className="button-resting" color="primary" />)
+                            /> : this.state.itemState === "working" ? <DirectionsRunIcon ref={this.workingIconRef} className="button-working" color="primary" onClick={() => { this.pauseAndreStart() }} /> : <AirlineSeatReclineExtraIcon className="button-resting" color="primary" />)
                     : null}
                 <span className="todo-name">
 
-                {window.innerWidth > 1000? 
-                    <>
-                    <span>{  name.length > 17 ? `${name.slice(0,15)}...` : name}</span>
-                    {name.length > 17 ?     
-                    <Chip size="small" label={name}  className ="full-name"/>
-                    : null}
-                    </>
-                    :
-                    <>
-                    <span>{  name.length > 7 ? `${name.slice(0,6)}...` : name}</span>
-                    {name.length > 7 ?     
-                    <Chip size="small" label={name}  className ="full-name"/>
-                    : null}
-                    </>
-                }
+                    {window.innerWidth > 1000 ?
+                        <>
+                            <span>{name.length > 17 ? `${name.slice(0, 15)}...` : name}</span>
+                            {name.length > 17 ?
+                                <Chip className size="small" label={name} className="full-name" />
+                                : null}
+                        </>
+                        :
+                        <>
+                            <span>{name.length > 7 ? `${name.slice(0, 6)}...` : name}</span>
+                            {name.length > 7 ?
+                                <Chip className size="small" label={name} className="full-name" />
+                                : null}
+                        </>
+                    }
                 </span>
 
-                    
+
                 {isLive ? (
                     <>
                         <span ref={this.counterRef} className="pomocount">
@@ -173,17 +173,17 @@ export class TodoItem extends React.Component {
 
                             <Button className="control-button" onClick={() => { addPomoBlocks(item) }}>+</Button>
                             <Button className="control-button" onClick={() => { removePomoBlocks(item) }}>-</Button>
-                            
+
                         </ButtonGroup>
 
                         <Button onClick={() => {
-                                setTimeout(() => {
-                                    this.handleMoveItemThrottle(item);
-                                    clearInterval(this.handler);
-                                    clearInterval(this.restHandler);
-                                }, 400)
-                            }} color="primary" className="done-wrapper" >
-                                Done
+                            setTimeout(() => {
+                                this.handleMoveItemThrottle(item);
+                                clearInterval(this.handler);
+                                clearInterval(this.restHandler);
+                            }, 400)
+                        }} color="primary" className="done-wrapper" >
+                            Done
                             </Button>
                     </>
                 ) :
