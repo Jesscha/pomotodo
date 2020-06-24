@@ -145,14 +145,14 @@ export class TodoItem extends React.Component {
                         <>
                             <span>{name.length > 17 ? `${name.slice(0, 15)}...` : name}</span>
                             {name.length > 17 ?
-                                <Chip className size="small" label={name} className="full-name" />
+                                <Chip size="small" label={name} className="full-name" />
                                 : null}
                         </>
                         :
                         <>
                             <span>{name.length > 7 ? `${name.slice(0, 6)}...` : name}</span>
                             {name.length > 7 ?
-                                <Chip className size="small" label={name} className="full-name" />
+                                <Chip size="small" label={name} className="full-name" />
                                 : null}
                         </>
                     }
