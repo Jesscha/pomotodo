@@ -11,24 +11,24 @@ export const BlockAcheivedContainer = ({ achievedBlocks, clearBlocks }) => {
     return (
         <div className="block-acheived-container container" id="acheivements">
             <Paper >
-            <h4 className="acheived-title" >Status</h4>
-            <span  
-                className="close-icon"
-                onClick={()=>{
-                    document.getElementById('acheivements').classList.remove("visible");
-                }}
+                <h4 className="acheived-title" >Status</h4>
+                <span
+                    className="close-icon"
+                    onClick={() => {
+                        document.getElementById('acheivements').classList.remove("visible");
+                    }}
                 >X</span>
-            <ul className="status-lists">
-                <li className="status-item">
-                {`Level : ${Math.floor(achievedBlocks/10)+1}`}   
-                </li>
-                <li className="status-item">
-                {`crashed blocks : ${achievedBlocks}`}   
-                </li>
-            </ul>
-                     
-             {/* <DeleteForeverIcon className="deleteIcon" color="primary" onClick={() => { clearBlocks() }} /> */}
-        </Paper>
+                <ul className="status-lists">
+                    <li className="status-item">
+                        {`Level : ${Math.floor(achievedBlocks / 10) + 1}`}
+                    </li>
+                    <li className="status-item">
+                        {`crushed blocks : ${achievedBlocks}`}
+                    </li>
+                </ul>
+
+                {/* <DeleteForeverIcon className="deleteIcon" color="primary" onClick={() => { clearBlocks() }} /> */}
+            </Paper>
         </div>
     )
 }
